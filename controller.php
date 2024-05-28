@@ -19,7 +19,7 @@
     function saveUser($username, $password, $telnum, $email, $address){
         $conn = my_connectDB();
 
-        $sql = "INSERT INTO customers (username, password, telephone_num, email, address) VALUES ($username, $password, $telnum, $email, $address)";
+        $sql = "INSERT INTO customers (username, password, telephone_num, email, address) VALUES ('$username', '$password', '$telnum', '$email', '$address')";
         $result = mysqli_query($conn, $sql);
 
         my_closeDB($conn);
@@ -36,7 +36,6 @@
     }
 
     //function to delete user from database
-    hello
     function deleteUser(){
         $conn = my_connectDB();
 
