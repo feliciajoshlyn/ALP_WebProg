@@ -6,6 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>hi</h1>
+    <form method="POST" action="">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="text" name="password"><br>
+        <input type="submit" name="submit">
+    </form>
+    <?php
+        
+    ?>
 </body>
 </html>
