@@ -36,11 +36,11 @@
     }
 
     //function to delete user from database
-    function deleteUser(){
+    function deleteUser($customer_id){
         $conn = my_connectDB();
 
-        $sql = "";
-        $result = mysqli_query($conn, $sql);
+        $sql = "DELETE FROM customers WHERE customer_id = '$customer_id'";
+        $result = mysqli_query($conn, $sql) or die();
 
         my_closeDB($conn);
     }
