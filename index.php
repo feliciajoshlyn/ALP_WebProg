@@ -9,6 +9,16 @@
 </head>
 
 <body>
-    <h1>hi <?= $_SESSION['user']['username'] ?></h1>
+    <?php if (isset($_SESSION['user'])) {
+
+    ?>
+        <h1>hi <?= $_SESSION['user']['username'] ?></h1>
+    <?php
+    } else {
+    ?> <h1>hi guest</h1>
+    <?php
+
+    } ?>
 </body>
+
 </html>

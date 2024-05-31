@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,12 +36,15 @@
         font-size: 22px;
         color: white;
     }
+
+    #dropdown a {
+        transition: background-color 0.2s;
+    }
 </style>
 
 <body class="bg-yellow-50 sm:background-size:contain">
     <?php if (isset($_GET['signedIn'])) { ?>
-        <h2>sign in to access this feature</h2>
-    <?php } ?>
+        <h2>sign in to access this feature</h2><?php } ?>
     <?php if (isset($_SESSION['user'])) {
         header("Location: index.php");
     } ?>
@@ -55,13 +61,21 @@
             </div>
 
             <ul id="slide" class="bg-red-800 sm:flex sm:items-center z-50 sm:z-auto sm:static absolute w-full left-0 sm:w-auto sm:py-0 py-4 sm:pl-0 pl-7 sm:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
-                <li class="mx-4 my-6 md:my-0"><a href="index.php" class="font-medium hover: text-orange-50 duration-500">Home</a></li>
-                <li class="mx-4 my-6 md:my-0"><a href="viewItems.php" class="font-medium hover: text-orange-50  duration-500">Product</a></li>
-                <li class="mx-4 my-6 md:my-0"><a href="profile.php" class="font-medium hover: text-orange-50  duration-500">Profile</a></li>
+                <li class="mx-4 my-6 md:my-0"><a href="index.php" class="font-medium hover:text-orange-200 duration-500 ">Home</a></li>
+                <li class="mx-4 my-6 md:my-0"><a href="viewItems.php" class="font-medium hover:text-orange-200  duration-500">Products</a></li>
+                <li class="mx-4 my-6 md:my-0 md:hidden"><a href="login.php" class="font-medium hover:text-orange-200  duration-500">Login</a></li>
+                <li class="mx-4 my-6 md:my-0 md:hidden"><a href="register.php" class="font-medium hover:text-orange-200  duration-500">Register</a></li>
+                <li class="mx-4 my-6 md:my-0 relative">
+                    <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
+                    <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
+                        <a href="login.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
+                        <a href="register.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Register</a>
+                    </div>
+                </li>
             </ul>
         </nav>
 
-        <div class="bg-[#FBEBA1] p-6 mt-20 rounded-lg shadow-md w-60 md:w-72 mx-auto text-center flex flex-col">
+        <div class="bg-[#FBEBA1] p-6 mt-20 rounded-lg shadow-md w-[90%] md:w-[40%] lg:w-[30%] mx-auto text-center flex flex-col">
             <h1 class="">Welcome!</h1>
             <h4 class="">Login into your account to continue</h4>
             <div>
@@ -69,13 +83,16 @@
                     Username<input type="text" name="username" class="w-full outline outline-offset-1 rounded-lg mb-4" required>
                     Password<input type="password" name="password" class="w-full outline outline-offset-1 rounded-lg">
 
-                    <a href="#" class="text-sm text-left text-blue-500 w-full mt-4">Forget Password?</a>
-                    <a href="register.php" class="text-sm text-left text-blue-500 w-full mt-4">Register</a>
-                    <div id="button" class="flex justify-center items-center w-4/5 mx-auto rounded-lg mt-4 py-1"><button type="submit" name="submit" class="text-center text-white">Login</button></div>
+                    <a href="#" class="text-sm text-left text-blue-500 w-full mt-4 hover:underline">Forget Password?</a>
+                    <a href="register.php" class="text-sm text-left text-blue-500 w-full mt-4 hover:underline">Register</a>
+                    <div id="button" class="flex justify-center items-center w-4/5 mx-auto rounded-lg mt-4 py-1 transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-blue-700">
+                        <button type="submit" name="submit" class="w-full text-center text-white bg-[#4C62B7] rounded-lg py-2 hover:bg-blue-700">Login</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+
 
     <script>
         function menu(e) {
@@ -83,6 +100,20 @@
 
             e.name === 'menu' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100')) : (e.name = "menu", list.classList.remove('top-[80px]'), list.classList.remove('opacity-100'))
         }
+
+        function toggleDropdown() {
+            let dropdown = document.getElementById('dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        //tutup dropdown
+        document.addEventListener('click', function(event) {
+            let dropdown = document.getElementById('dropdown');
+            let profilePic = dropdown.previousElementSibling;
+            if (!dropdown.contains(event.target) && !profilePic.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
     </script>
 </body>
 
