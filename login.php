@@ -66,7 +66,7 @@
             <h4>Login into your account to continue</h4>
             <div>
                 <form class="flex flex-col justify-start items-start mt-4" method="POST" action="loginBehind.php">
-                    Username<input type="text" name="username" class="w-full outline outline-offset-1 rounded-lg mb-4">
+                    Username<input type="text" name="username" class="w-full outline outline-offset-1 rounded-lg mb-4" required>
                     Password<input type="password" name="password" class="w-full outline outline-offset-1 rounded-lg">
                     <a href="#" class="text-sm text-left text-blue-500 w-full mt-4">Forget Password?</a>
                     <a href="register.php" class="text-sm text-left text-blue-500 w-full mt-4">Register</a>

@@ -49,14 +49,15 @@
     $result = mysqli_query($conn, $sql);
 
     while ($data = $result->fetch_assoc()) {
-        echo "Product Name: " . $data['name'] . "<br>";
-        echo "Description: " . $data['description'] . "<br>";
-    ?> <img src="<?= $data['photo'] ?>" style="width:200px"><br>
-        <?php
-        echo "Price: " . $data['price'] . "<br>";
-        echo "Category: " . $data['category'] . "<br>";
-        echo "Country: " . $data['country'] . "<br>";
-        echo "<a href='viewItemDetail.php?product_id=".$data['product_id']."'>View Details</a><br>";
+    ?>
+        <p>Product Name: <?= $data['name'] ?></p><br>
+        <p>Description: <?= $data['description'] ?></p><br>
+        <img src="<?= $data['photo'] ?>" style="width:200px"><br>
+        <p>Price: <?= $data['price'] ?></p>
+        <p>Category: <?= $data['category'] ?></p>
+        <p>Country: <?= $data['country'] ?></p>
+        <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>"></a>
+    <?php
     }
     my_closeDB($conn);
     ?>

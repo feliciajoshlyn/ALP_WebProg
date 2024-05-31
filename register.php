@@ -72,7 +72,7 @@
 
                     <a href="#" class="text-sm text-left text-blue-500 w-full mt-4">Forget Password?</a>
                     <a href="login.php" class="text-sm text-left text-blue-500 w-full mt-4">Sign in</a>
-                    <div id="button" class="flex justify-center items-center w-4/5 mx-auto rounded-lg mt-4 py-1"><button type="submit" name="submit" class="text-center text-white">Login</button></div>
+                    <div id="button" class="flex justify-center items-center w-4/5 mx-auto rounded-lg mt-4 py-1"><button type="submit" name="submit" class="text-center text-white">Register</button></div>
                 </form>
             </div>
         </div>
