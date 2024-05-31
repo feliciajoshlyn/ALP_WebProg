@@ -39,11 +39,11 @@ function saveUser($username, $password, $telnum, $email, $address)
 }
 
 //function to update user info
-function updateUser($user_id, $username, $password, $telnum, $email, $address)
+function updateUser($user_id, $username, $password, $telephone_num, $email, $address)
 {
     $conn = my_connectDB();
 
-    $sql = "UPDATE customers SET username = '$username' , password = '$password', telephone_num = '$telnum', email = '$email', address='$address'  WHERE customer_id='$user_id'";
+    $sql = "UPDATE customers SET username = '$username' , password = '$password', telephone_num = '$telephone_num', email = '$email', address='$address'  WHERE customer_id='$user_id'";
     $result = mysqli_query($conn, $sql);
 
     my_closeDB($conn);

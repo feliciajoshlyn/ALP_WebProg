@@ -67,7 +67,7 @@
                     Username<input type="text" name="username" class="w-full outline outline-offset-1 rounded-lg mb-4">
                     Email<input type="email" name="email" class="w-full outline outline-offset-1 rounded-lg mb-4">
                     Password<input type="password" name="password" class="w-full outline outline-offset-1 rounded-lg mb-4">
-                    Phone Number<input type="number" name="phone-input" id="phone-input" placeholder="123-456-7890" required class="w-full outline outline-offset-1 rounded-lg mb-4">
+                    Phone Number<input type="number" name="telephone_num" id="telephone_num" placeholder="123-456-7890" required class="w-full outline outline-offset-1 rounded-lg mb-4">
                     Address<input type="text" name="address" class="w-full outline outline-offset-1 rounded-lg">
 
                     <a href="#" class="text-sm text-left text-blue-500 w-full mt-4">Forget Password?</a>

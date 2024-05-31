@@ -6,7 +6,7 @@ include("controller.php");
 $user_id = $_SESSION['user']["customer_id"];
 $username = $_SESSION['user'] ['username'];
 $password = $_SESSION['user'] ['password'];
-$telephone_num = $_SESSION['user'] ['phone-input'];
+$telephone_num = $_SESSION['user'] ['telephone_num'];
 $email = $_SESSION['user'] ['email'];
 $address = $_SESSION['user'] ['address'];
 
@@ -20,11 +20,11 @@ $address = $_SESSION['user'] ['address'];
 </head>
 <body>
     <form method="POST" action="editProfileBehind.php">
-        <input type="hidden" value="$user_id" name="user_id">
+        <input type="hidden" value="<?=$user_id?>" name="user_id">
         Username: <input type="text" value="<?= $username?>" name="username"><br>
         Email: <input type="text" value="<?= $email?>" name="email" placeholder="example@gmail.com"><br>
         Password: <input type="password" value="<?= $password?>" name="password">
-        Phone number:<input type="text" value="<?= $telephone_num?>" name="phone-input" id="phone-input" aria-describedby="helper-text-explanation" class="" pattern="[0-9]{12}" placeholder="123-456-7890" required /><br>
+        Phone number:<input type="text" value="<?= $telephone_num?>" name="telephone_num" id="telephone_num" class="" placeholder="123-456-7890" required /><br>
         Address: <input type="text" value="<?= $address?>" name="address">
         <input type="submit" name="ok">
     </form>

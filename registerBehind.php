@@ -2,7 +2,7 @@
 include('controller.php');
 $username = $_POST['username'];
 $password = $_POST['password'];
-$phone = $_POST['phone-input'];
+$phone = $_POST['telephone_num'];
 $email = $_POST['email'];
 $address = $_POST['address'];
 
