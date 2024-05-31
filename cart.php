@@ -43,19 +43,22 @@ if (!isset($_SESSION['user']['customer_id'])) {
         <!-- cart -->
         <div>
             <p>View All Your Items</p>
+            <div>
+                <?php
+                while ($data = $result->fetch_assoc()) {
+                    ?>
+                    <p><?= $data['name']?></p>
+                    <!-- just edit and delete button -->
+                    <!-- <div class="quantity-control">
+                        <button class="minus-btn">-</button>
+                        <input type="number" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
+                        <button class="plus-btn">+</button>
+                    </div> -->
             <?php
-            while ($data = $result->fetch_assoc()) {
-                echo $data['name'] . "<br>";
-            ?>
-                <div class="quantity-control">
-                    <button class="minus-btn">-</button>
-                    <input type="number" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
-                    <button class="plus-btn">+</button>
-                </div>
-        <?php
+                }
             }
-        }
-        ?>
+            ?>
+            </div>
         </div>
     </body>
     <script>

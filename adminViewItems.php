@@ -10,7 +10,7 @@
 <body>
     <header>
         <h1>Logo</h1>
-        <a href="viewItems.php">View All Products</a> | <a href="adminUpload.php">Add New Product</a><br><br>
+        <a href="adminViewItems.php">View All Products</a> | <a href="adminUpload.php">Add New Product</a><br><br>
     </header>
     <?php
     include('controller.php');

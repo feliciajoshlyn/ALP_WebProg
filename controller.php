@@ -109,6 +109,18 @@ function viewCart($user_id)
     return $result;
 }
 
+function viewRequest($user_id, $product_id)
+{
+    $conn = my_connectDB();
+
+    $sql = "SELECT * FROM customer_request WHERE customer_id = $user_id AND product_id = $product_id";
+    $result = mysqli_query($conn, $sql);
+
+    my_closeDB($conn);
+
+    return $result;
+}
+
 //Customers add to cart
 function addToCart($product_id, $quantity)
 {
@@ -129,11 +141,26 @@ function checkProductinCart($user_id, $product_id)
 
     $sql = "SELECT * FROM customer_request WHERE customer_id=$user_id AND product_id=$product_id";
     $result = mysqli_query($conn, $sql);
-    if($result -> num_rows>0){
-        return true;
+    if ($result->num_rows > 0) {
+
         my_closeDB($conn);
-    }else{
-        return false;
+        return 1;
+    } else {
+
         my_closeDB($conn);
+        return 0;
     }
+}
+
+//update the cart (plus)
+function cartUpdate($product_id, $quantity)
+{
+    $conn = my_connectDB();
+    $user_id = $_SESSION['user']['customer_id'];
+
+    $sql = "UPDATE customer_request SET quantity = $quantity WHERE product_id = '$product_id' AND customer_id = '$user_id'";
+    $result = mysqli_query($conn, $sql);
+
+    my_closeDB($conn);
+    return $result;
 }

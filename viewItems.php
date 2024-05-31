@@ -40,7 +40,12 @@
     include('controller.php');
     $conn = my_connectDB();
 
-    $sql = "SELECT * FROM products";
+    $sql = "";
+    if (isset($_GET['country'])) {
+        $sql = "SELECT * FROM products WHERE country =" . $_GET['country'];
+    } else {
+        $sql = "SELECT * FROM products";
+    }
     $result = mysqli_query($conn, $sql);
 
     while ($data = $result->fetch_assoc()) {
@@ -51,12 +56,24 @@
         echo "Price: " . $data['price'] . "<br>";
         echo "Category: " . $data['category'] . "<br>";
         echo "Country: " . $data['country'] . "<br>";
+
+        // initializer of the $data['quantity'] variable
+        $data['quantity'] = 1;
+
+        // checks if it exists
+        if (checkProductinCart($_SESSION['user']['customer_id'], $data['product_id']) == 1) {
+            // grabs the data and sets it to $data['quantity']
+            $request = viewRequest($_SESSION['user']['customer_id'], $data['product_id']);
+            $data['quantity'] = $request->fetch_assoc()['quantity'];
+        }
+
+
         ?>
         <form method="POST" action="addToCart.php">
             <input type="hidden" name="product_id" id="product_id" value="<?= $data['product_id'] ?>">
             <div class="quantity-control">
                 <button class="minus-btn">-</button>
-                <input type="number" class="quantity-input" name="quantity" value="1" min="1">
+                <input type="number" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
                 <button class="plus-btn">+</button>
             </div>
             <?php
@@ -65,7 +82,9 @@
                 <button type="submit" name="add_to_cart">Add to Cart</button>
             <?php
             } else {
-                echo "Product in Cart!";
+            ?>
+                <button type="submit" name="update_cart">Update Cart</button>
+            <?php
             }
             ?>
         </form>
@@ -81,6 +100,7 @@
     const quantityInput = document.querySelector('.quantity-input');
 
     minusBtn.addEventListener('click', () => {
+        event.preventDefault();
         let currentQuantity = parseInt(quantityInput.value);
         if (currentQuantity > 1) {
             quantityInput.value = currentQuantity - 1;
