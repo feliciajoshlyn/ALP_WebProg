@@ -1,0 +1,102 @@
+<?php
+session_start();
+include('controller.php');
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+
+        .minus-btn,
+        .plus-btn {
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .quantity-input {
+            width: 30px;
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <?php
+    $product_id = $_GET['product_id'];
+    $result = getItemDetails($product_id);
+    $data = $result->fetch_assoc();
+
+    echo $data['name'] . "<br>";
+    echo $data['description'] . "<br>";
+    ?> <img src="<?= $data['photo'] ?>" style="width:200px"><br>
+    <?php
+
+    // initializer of the $data['quantity'] variable
+    $data['quantity'] = 1;
+
+    // checks if it exists
+    if (checkProductinCart($_SESSION['user']['customer_id'], $data['product_id']) == 1) {
+        // grabs the data and sets it to $data['quantity']
+        $request = viewRequest($_SESSION['user']['customer_id'], $data['product_id']);
+        $data['quantity'] = $request->fetch_assoc()['quantity'];
+    }
+
+
+    ?>
+    <form method="POST" action="addToCart.php">
+        <input type="hidden" name="product_id" id="product_id" value="<?= $data['product_id'] ?>">
+        <div class="quantity-control">
+            <button class="minus-btn">-</button>
+            <input type="number" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
+            <button class="plus-btn">+</button>
+        </div>
+        <?php
+        if (checkProductinCart($_SESSION['user']['customer_id'], $data['product_id']) == false) {
+        ?>
+            <button type="submit" name="add_to_cart">Add to Cart</button>
+        <?php
+        } else {
+        ?>
+            <button type="submit" name="update_cart">Update Cart</button>
+        <?php
+        }
+        ?>
+    </form>
+</body>
+<script>
+    const quantityControl = document.querySelector('.quantity-control');
+    const minusBtn = document.querySelector('.minus-btn');
+    const plusBtn = document.querySelector('.plus-btn');
+    const quantityInput = document.querySelector('.quantity-input');
+
+    minusBtn.addEventListener('click', () => {
+        event.preventDefault();
+        let currentQuantity = parseInt(quantityInput.value);
+        if (currentQuantity > 1) {
+            quantityInput.value = currentQuantity - 1;
+        }
+    });
+
+    plusBtn.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default form submission on "+" button click
+        let currentQuantity = parseInt(quantityInput.value);
+        quantityInput.value = currentQuantity + 1;
+    });
+</script>
+
+</html>

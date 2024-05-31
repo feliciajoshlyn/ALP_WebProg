@@ -18,24 +18,6 @@ if (!isset($_SESSION['user']['customer_id'])) {
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
         <title>Document</title>
         <style>
-            .quantity-control {
-                display: flex;
-                align-items: center;
-            }
-
-            .minus-btn,
-            .plus-btn {
-                border: none;
-                padding: 5px;
-                cursor: pointer;
-            }
-
-            .quantity-input {
-                width: 30px;
-                text-align: center;
-                border: 1px solid #ccc;
-                padding: 5px;
-            }
         </style>
     </head>
 
@@ -49,6 +31,7 @@ if (!isset($_SESSION['user']['customer_id'])) {
                     ?>
                     <p><?= $data['name']?></p>
                     <!-- just edit and delete button -->
+                    <a href="deleteCartItem.php?product_id=<?= $data['product_id']?>">Delete From Cart</a><br>
                     <!-- <div class="quantity-control">
                         <button class="minus-btn">-</button>
                         <input type="number" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
@@ -61,24 +44,5 @@ if (!isset($_SESSION['user']['customer_id'])) {
             </div>
         </div>
     </body>
-    <script>
-        const quantityControl = document.querySelector('.quantity-control');
-        const minusBtn = document.querySelector('.minus-btn');
-        const plusBtn = document.querySelector('.plus-btn');
-        const quantityInput = document.querySelector('.quantity-input');
-
-        minusBtn.addEventListener('click', () => {
-            let currentQuantity = parseInt(quantityInput.value);
-            if (currentQuantity > 1) {
-                quantityInput.value = currentQuantity - 1;
-            }
-        });
-
-        plusBtn.addEventListener('click', (event) => {
-            event.preventDefault(); // Prevent default form submission on "+" button click
-            let currentQuantity = parseInt(quantityInput.value);
-            quantityInput.value = currentQuantity + 1;
-        });
-    </script>
 
     </html>

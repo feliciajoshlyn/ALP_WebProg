@@ -96,6 +96,17 @@ function uploadItems($name, $desc, $image, $price, $category, $country)
     my_closeDB($conn);
 }
 
+//get details of item
+function getItemDetails($product_id){
+    $conn = my_connectDB();
+
+    $sql = "SELECT * FROM products WHERE product_id = $product_id";
+    $result = mysqli_query($conn, $sql);
+
+    my_closeDB($conn);
+    return $result;
+}
+
 //Customers view carts
 function viewCart($user_id)
 {
@@ -163,4 +174,15 @@ function cartUpdate($product_id, $quantity)
 
     my_closeDB($conn);
     return $result;
+}
+
+function cartItemDelete($product_id)
+{
+    $conn = my_connectDB();
+    $user_id = $_SESSION['user']['customer_id'];
+
+    $sql = "DELETE FROM customer_request WHERE product_id = $product_id";
+    $result = mysqli_query($conn, $sql);
+
+    my_closeDB($conn);
 }

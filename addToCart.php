@@ -13,5 +13,5 @@ if(isset($_POST['update_cart'])){
 }
 
 
-header("Location:viewItems.php");
+header("Location:viewItemDetail.php?product_id=".$product_id);
 ?>
