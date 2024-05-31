@@ -20,14 +20,15 @@
     $result = mysqli_query($conn, $sql);
 
     while ($data = $result->fetch_assoc()) {
-        echo "Product Name: " . $data['name'] . "<br>";
-        echo "Description: " . $data['description'] . "<br>";
-    ?> <img src="<?= $data['photo'] ?>" style="width:200px"><br>
+        ?>
+        <p>Product Name: <?= $data['name']?></p><br>
+        <p>Description: <?= $data['description']?></p><br>
+        <img src="<?= $data['photo'] ?>" style="width:200px"><br>
+        <p>Price: <?= $data['price']?></p><br>
+        <p>Category: <?= $data['category']?></p><br>
+        <p>Country: <?= $data['country']?></p><br>
+        <a href="updateItem.php?update_id=<?= $data['product_id']?>">edit</a> | <a href="deleteItem.php?delete_id=<?= $data['product_id']?>">delete</a><br>
     <?php
-        echo "Price: " . $data['price'] . "<br>";
-        echo "Category: " . $data['category'] . "<br>";
-        echo "Country: " . $data['country'] . "<br>";
-        echo "<a href='updateItem.php?=update_id=".$data['product_id']."'>edit</a> | <a href='deleteItem.php?=delete_id=".$data['product_id']."'>delete</a>";
     }
     my_closeDB($conn);
     ?>

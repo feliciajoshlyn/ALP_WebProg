@@ -62,12 +62,17 @@
         </nav>
 
         <div class="bg-[#FBEBA1] p-6 mt-20 rounded-lg shadow-md w-60 md:w-72 mx-auto text-center flex flex-col">
-            <h1 class="text-">Welcome!</h1>
-            <h4>Login into your account to continue</h4>
+            <h1 class="">Welcome!</h1>
+            <h4 class="">Login into your account to continue</h4>
             <div>
                 <form class="flex flex-col justify-start items-start mt-4" method="POST" action="loginBehind.php">
+<<<<<<< Updated upstream
                     Username<input type="text" name="username" class="w-full outline outline-offset-1 rounded-lg mb-4" required>
                     Password<input type="password" name="password" class="w-full outline outline-offset-1 rounded-lg">
+=======
+                    Username<input type="text" name="username" class="p-2 w-full outline outline-offset-1 rounded-lg mb-4">
+                    Password<input type="password" name="password" class="p-2 w-full outline outline-offset-1 rounded-lg">
+>>>>>>> Stashed changes
                     <a href="#" class="text-sm text-left text-blue-500 w-full mt-4">Forget Password?</a>
                     <a href="register.php" class="text-sm text-left text-blue-500 w-full mt-4">Register</a>
                     <div id="button" class="flex justify-center items-center w-4/5 mx-auto rounded-lg mt-4 py-1"><button type="submit" name="submit" class="text-center text-white">Login</button></div>
