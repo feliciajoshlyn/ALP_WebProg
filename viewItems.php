@@ -77,7 +77,7 @@ include('controller.php');
 
 <body class="bg-yellow-50 background-size:contain">
     <div>
-        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between">
+        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
             <div class="flex justify-between items-center">
                 <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
                 <span class="text-xl cursor-pointer font-semibold">
@@ -132,7 +132,7 @@ include('controller.php');
                     </li>
             </ul>
         </nav>
-        <div class="flex flex-col items-center md:mt-5 md:items-start md:w-full lg:w-full mx-auto p-4">
+        <div class="flex flex-col items-center mt-16 md:mt-28 md:items-start md:w-full lg:w-full mx-auto p-4">
             <div class="w-full text-center md:text-left">
                 <button class="back-button text-left md:hidden" onclick="history.back()">
                     <ion-icon name="arrow-back-outline"></ion-icon>

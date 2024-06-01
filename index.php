@@ -42,7 +42,7 @@
 
 <body class="bg-yellow-50 background-size:contain">
     <div>
-        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between">
+        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
             <div class="flex justify-between items-center">
                 <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
                 <span class="text-xl cursor-pointer font-semibold">
@@ -83,28 +83,33 @@
             </ul>
         </nav>
     </div>
+    <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
 
-    <h1>hi <?= $_SESSION['user']['username'] ?></h1>
-<?php
+        <h1>hi <?= $_SESSION['user']['username'] ?></h1>
+    <?php
                 } else {
-?>
-    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="login.php" class="font-medium hover:text-orange-200  duration-500">Login</a></li>
-    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="register.php" class="font-medium hover:text-orange-200  duration-500">Register</a></li>
-    <li class="mx-4 my-6 md:my-0 relative">
-        <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
-        <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
-            <a href="login.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
-            <a href="register.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Register</a>
-        </div>
-    </li>
-    </ul>
-    </nav>
+    ?>
+        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="login.php" class="font-medium hover:text-orange-200  duration-500">Login</a></li>
+        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="register.php" class="font-medium hover:text-orange-200  duration-500">Register</a></li>
+        <li class="mx-4 my-6 md:my-0 relative">
+            <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
+            <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
+                <a href="login.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
+                <a href="register.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Register</a>
+            </div>
+        </li>
+        </ul>
+        </nav>
     </div>
+    <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
 
     <h1>hi guest</h1>
 <?php
 
-                } ?>
+                }
+?>
+</div>
+</div>
 </body>
 <script>
     function menu(e) {

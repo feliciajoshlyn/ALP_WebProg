@@ -40,6 +40,12 @@ include('controller.php');
             transition: background-color 0.2s;
         }
 
+        img{
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
         .quantity-control {
             display: flex;
             align-items: center;
@@ -47,10 +53,10 @@ include('controller.php');
 
         .minus-btn,
         .plus-btn {
-            border: none;
             padding: 5px;
             cursor: pointer;
         }
+
 
         .quantity-input {
             width: 30px;
@@ -77,7 +83,7 @@ include('controller.php');
 
 <body class="bg-yellow-50 background-size:contain">
     <div>
-        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between">
+        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
             <div class="flex justify-between items-center">
                 <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
                 <span class="text-xl cursor-pointer font-semibold">
@@ -133,12 +139,12 @@ include('controller.php');
             </ul>
         </nav>
     </div>
-    <div class="flex flex-col items-center md:items-start md:w-full lg:w-full mx-auto p-4">
+    <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
         <div class="w-full text-center md:text-left">
             <button class="back-button" onclick="history.back()">
                 <ion-icon name="arrow-back-outline"></ion-icon>
             </button>
-            <p class="text-3xl font-bold m-3 mt-[-20px] mb-4 md:ml-16">Item Details</p>
+            <!-- <p class="text-3xl font-bold m-3 mt-[-20px] mb-4 md:ml-16">Item Details</p> -->
         </div>
 
 
@@ -146,56 +152,67 @@ include('controller.php');
         $product_id = $_GET['product_id'];
         $result = getItemDetails($product_id);
         $data = $result->fetch_assoc();
-
-        echo $data['name'] . "<br>";
-        echo $data['description'] . "<br>";
-        ?> <img src="<?= $data['photo'] ?>" style="width:200px"><br>
-        <?php
-
-        if (isset($_SESSION['user']) && $_SESSION['user']['admin'] == 0) {
-            // initializer of the $data['quantity'] variable
-            $data['quantity'] = 1;
-
-            // checks if it exists
-            if (checkProductinCart($_SESSION['user']['customer_id'], $data['product_id']) == 1) {
-                // grabs the data and sets it to $data['quantity']
-                $request = viewRequest($_SESSION['user']['customer_id'], $data['product_id']);
-                $data['quantity'] = $request->fetch_assoc()['quantity'];
-            }
-
-
         ?>
-            <form method="POST" action="addToCart.php">
-                <input type="hidden" name="product_id" id="product_id" value="<?= $data['product_id'] ?>">
-                <div class="quantity-control">
-                    <button class="minus-btn">-</button>
-                    <input type="number" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
-                    <button class="plus-btn">+</button>
-                </div>
-                <?php
-                if (checkProductinCart($_SESSION['user']['customer_id'], $data['product_id']) == false) {
-                ?>
-                    <button type="submit" name="add_to_cart">Add to Cart</button>
-                <?php
-                } else {
-                ?>
-                    <button type="submit" name="update_cart">Update Cart</button>
-                <?php
-                }
-            } else if (!isset($_SESSION['user'])) {
-                ?>
-                <a href="login.php" class="border rounded-md p-3 bg-orange-100 font-bold">Sign in to Buy</a>
-            <?php
-            } else if ($_SESSION['user']['admin'] == 1) {
-            ?>
+        <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
+            <div class="md:flex grow ">
                 <div>
-                    <a href="updateItem.php?update_id=<?= $data['product_id'] ?>">Edit Item</a> | <a href="deleteItem.php">delete</a>
+                    <img src="<?= $data['photo'] ?>" class="w-full">
                 </div>
-            <?php
-            }
-            ?>
-            </form>
-    </div>
+                <div class="ml-2">
+                    <p class="text-lg md:text-3xl font-bold text-left"><?= $data['name'] ?></p>
+                    <p>"<?= $data['description'] ?>"</p><br>
+                    <p class="text-sm">Category: <?=$data['category']?></p>
+                    <p class="text-sm">Country: <?= $data['country']?></p>
+                    <p class="text-sm">Rp <?= $data['price']?></p><br>
+                    <p class="text-sm">Quantity:    </p>
+                    <?php
+
+                    if (isset($_SESSION['user']) && $_SESSION['user']['admin'] == 0) {
+                        // initializer of the $data['quantity'] variable
+                        $data['quantity'] = 1;
+
+                        // checks if it exists
+                        if (checkProductinCart($_SESSION['user']['customer_id'], $data['product_id']) == 1) {
+                            // grabs the data and sets it to $data['quantity']
+                            $request = viewRequest($_SESSION['user']['customer_id'], $data['product_id']);
+                            $data['quantity'] = $request->fetch_assoc()['quantity'];
+                        }
+
+
+                    ?>
+                        <form method="POST" action="addToCart.php" >
+                            <input type="hidden" name="product_id" id="product_id" value="<?= $data['product_id'] ?>">
+                            <div class="quantity-control float-left">
+                                <button class="minus-btn border border-gray-400 rounded-l-md px-2 py-1 bg-">-</button>
+                                <input type="number" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
+                                <button class="plus-btn border border-gray-400 rounded-r-md px-2 py-1">+</button>
+                            </div>
+                            <?php
+                            if (checkProductinCart($_SESSION['user']['customer_id'], $data['product_id']) == false) {
+                            ?>
+                                <button type="submit" name="add_to_cart" class="float-right border border-gray-200 rounded-md">Add to Cart</button>
+                            <?php
+                            } else {
+                            ?>
+                                <button type="submit" name="update_cart border border-gray-200 rounded-md">Update Cart</button>
+                            <?php
+                            }
+                        } else if (!isset($_SESSION['user'])) {
+                            ?>
+                            <a href="login.php" class="border rounded-md p-3 bg-orange-100 font-bold">Sign in to Buy</a>
+                        <?php
+                        } else if ($_SESSION['user']['admin'] == 1) {
+                        ?>
+                            <div>
+                                <a href="updateItem.php?update_id=<?= $data['product_id'] ?>">Edit Item</a> | <a href="deleteItem.php">delete</a>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                        </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 <script>

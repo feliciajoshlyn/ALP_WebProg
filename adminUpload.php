@@ -12,7 +12,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -55,12 +55,30 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
             .back-button:hover ion-icon {
                 color: #3b4a8b;
             }
+
+            /* Fix for mobile overflow */
+            body {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                overflow-x: hidden;
+            }
+
+            html {
+                overflow-x: hidden;
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
         </style>
     </head>
 
-    <body class="bg-yellow-50 background-size:contain">
-        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between">
-            <div class="flex justify-between items-center">
+    <body class="bg-yellow-50">
+        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 flex items-center justify-between">
+            <div class="flex w-full justify-between items-center w-auto">
                 <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
                 <span class="text-xl cursor-pointer font-semibold">
                     TitipinAja.com
@@ -74,7 +92,8 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
                 <li class="mx-4 my-6 md:my-0"><a href="index.php" class="font-medium hover:text-orange-200  duration-500">Home</a></li>
                 <li class="mx-4 my-6 md:my-0"><a href="viewItems.php" class="font-medium hover:text-orange-200  duration-500">Products</a></li>
 
-                <?php if (isset($_SESSION['user'])) {
+                <?php
+                if (isset($_SESSION['user'])) {
                 ?>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="logout.php" class="font-medium hover:text-orange-200  duration-500">Logout</a></li>
@@ -102,23 +121,22 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
                     </li>
             </ul>
         </nav>
-        <div class="flex flex-col items-center md:items-start md:w-full lg:w-full mx-auto p-4">
+        <div class="flex flex-col items-center md:items-start w-full lg:w-full mx-auto p-4">
             <div class="w-full text-center md:text-left">
                 <button class="back-button" onclick="history.back()">
                     <ion-icon name="arrow-back-outline"></ion-icon>
                 </button>
-                <p class="text-3xl font-bold m-3 mt-[-20px] mb-4 md:ml-16">Upload Item</p>
+                <p class="text-3xl font-bold m-3 mt-[-20px] mb-4">Upload Item</p>
             </div>
             <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
                 <div class="grid">
-                    <!-- <a href="viewItems.php">View All Products</a> | <a href="adminUpload.php">Add New Product</a><br><br> -->
-                    <form method="POST" action="uploadItemBehind.php" enctype="multipart/form-data">
-                        Product Name: <br><input type="text" name="product_name" class="w-50 md:w-full"><br>
-                        Description: <br><input type="text" name="product_description" class="w-50 md:w-full"><br>
+                    <form method="POST" action="uploadItemBehind.php" enctype="multipart/form-data" class="">
+                        Product Name: <br><input type="text" name="product_name" class="w-full md:w-full"><br>
+                        Description: <br><input type="text" name="product_description" class="w-full md:w-full"><br>
                         Photo: <br><input type="file" name="image" id="image" required><br>
-                        Price: <br><input type="number" name="price" class="w-50 md:w-full"><br>
-                        Category: <br><input type="text" name="category" class="w-50 md:w-full"><br>
-                        Country : <br><input type="text" name="country" class="w-50 md:w-full"><br>
+                        Price: <br><input type="number" name="price" class="w-full md:w-full"><br>
+                        Category: <br><input type="text" name="category" class="w-full md:w-full"><br>
+                        Country : <br><input type="text" name="country" class="w-full md:w-full"><br>
                         <input type="submit" name="submit">
                     </form>
                 </div>
@@ -140,7 +158,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
             dropdown.classList.toggle('hidden');
         }
 
-        //tutup dropdown
+        // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
             let dropdown = document.getElementById('dropdown');
             let profilePic = dropdown.previousElementSibling;

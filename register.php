@@ -41,7 +41,7 @@
 
 <body class="bg-yellow-50 sm:background-size:contain">
     <div>
-        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between">
+        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
             <div class="flex justify-between items-center">
                 <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
                 <span class="text-xl cursor-pointer font-semibold">
@@ -71,7 +71,7 @@
             <h2>REGISTER FAILED - DUPLICATE USERNAME</h2>
         <?php } ?>
 
-        <div class="bg-[#FBEBA1] p-6 mt-20 rounded-lg shadow-md w-[90%] md:w-[40%] mx-auto text-center flex flex-col">
+        <div class="bg-[#FBEBA1] p-6 mt-28 mb-10 rounded-lg shadow-md w-[90%] md:w-[40%] mx-auto text-center flex flex-col">
             <h1 class="text-">Welcome!</h1>
             <h4>Register account</h4>
             <div>
@@ -82,7 +82,6 @@
                     Phone Number<input type="number" name="telephone_num" id="telephone_num" placeholder="123-456-7890" required class="w-full outline outline-offset-1 rounded-lg mb-4">
                     Address<input type="text" name="address" class="w-full outline outline-offset-1 rounded-lg">
 
-                    <a href="#" class="text-sm text-left text-blue-500 w-full mt-4 hover:underline">Forget Password?</a>
                     <a href="login.php" class="text-sm text-left text-blue-500 w-full mt-4 hover:underline">Sign in</a>
                     <div id="button" class="flex justify-center items-center w-4/5 mx-auto rounded-lg mt-4 py-1 transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-blue-700">
                         <button type="submit" name="submit" class="w-full text-center text-white bg-[#4C62B7] rounded-lg py-2 hover:bg-blue-700">Register</button>

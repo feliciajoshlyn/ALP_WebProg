@@ -1,70 +1,73 @@
 <?php
 session_start();
 include("controller.php");
-if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
-    echo "you have no access";
-} else {
-
-    $productRow = getItemDetails($_GET['update_id'])->fetch_assoc();
 
 ?>
 
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <title>ItemDetail</title>
-        <style>
-            body {
-                font-family: 'poppins';
-            }
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>ItemDetail</title>
+    <style>
+        body {
+            font-family: 'poppins';
+        }
 
-            #navbar {
-                background-color: #4C62B7;
-            }
+        #navbar {
+            background-color: #4C62B7;
+        }
 
-            #slide,
-            #button {
-                background-color: #4C62B7;
-            }
+        #slide,
+        #button {
+            background-color: #4C62B7;
+        }
 
-            .small-icon {
-                font-size: 22px;
-                color: white;
-            }
+        .small-icon {
+            font-size: 22px;
+            color: white;
+        }
 
-            #dropdown a {
-                transition: background-color 0.2s;
-            }
+        #dropdown a {
+            transition: background-color 0.2s;
+        }
 
-            .back-button {
-                background-color: transparent;
-                border: none;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                margin-bottom: 16px;
-                font-size: 1.5rem;
-            }
+        .back-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+        }
 
-            .back-button:hover ion-icon {
-                color: #3b4a8b;
-            }
-        </style>
-    </head>
+        .back-button:hover ion-icon {
+            color: #3b4a8b;
+        }
+    </style>
+</head>
 
-    <body class="bg-yellow-50 background-size:contain">
-        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between">
+<body class="bg-yellow-50 background-size:contain">
+    <?php
+    if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
+        echo "you have no access";
+    } else {
+
+        $productRow = getItemDetails($_GET['update_id'])->fetch_assoc();
+
+    ?>
+        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
             <div class="flex justify-between items-center">
                 <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
                 <span class="text-xl cursor-pointer font-semibold">
@@ -107,7 +110,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
                     </li>
             </ul>
         </nav>
-        <div class="flex flex-col items-center md:items-start md:w-full lg:w-full mx-auto p-4">
+        <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
             <div class="w-full text-center md:text-left">
                 <button class="back-button" onclick="history.back()">
                     <ion-icon name="arrow-back-outline"></ion-icon>
@@ -125,29 +128,29 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
             </form>
         </div>
     <?php
-}
+    }
     ?>
-    </body>
-    <script>
-        function menu(e) {
-            let list = document.querySelector('ul');
+</body>
+<script>
+    function menu(e) {
+        let list = document.querySelector('ul');
 
-            e.name === 'menu' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100')) : (e.name = "menu", list.classList.remove('top-[80px]'), list.classList.remove('opacity-100'))
+        e.name === 'menu' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100')) : (e.name = "menu", list.classList.remove('top-[80px]'), list.classList.remove('opacity-100'))
+    }
+
+    function toggleDropdown() {
+        let dropdown = document.getElementById('dropdown');
+        dropdown.classList.toggle('hidden');
+    }
+
+    //tutup dropdown
+    document.addEventListener('click', function(event) {
+        let dropdown = document.getElementById('dropdown');
+        let profilePic = dropdown.previousElementSibling;
+        if (!dropdown.contains(event.target) && !profilePic.contains(event.target)) {
+            dropdown.classList.add('hidden');
         }
+    });
+</script>
 
-        function toggleDropdown() {
-            let dropdown = document.getElementById('dropdown');
-            dropdown.classList.toggle('hidden');
-        }
-
-        //tutup dropdown
-        document.addEventListener('click', function(event) {
-            let dropdown = document.getElementById('dropdown');
-            let profilePic = dropdown.previousElementSibling;
-            if (!dropdown.contains(event.target) && !profilePic.contains(event.target)) {
-                dropdown.classList.add('hidden');
-            }
-        });
-    </script>
-
-    </html>
+</html>

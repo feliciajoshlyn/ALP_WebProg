@@ -55,7 +55,7 @@ session_start();
     }
      ?>
     <div>
-        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between">
+        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
             <div class="flex justify-between items-center">
                 <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
                 <span class="text-xl cursor-pointer font-semibold">
@@ -81,7 +81,7 @@ session_start();
             </ul>
         </nav>
 
-        <div class="bg-[#FBEBA1] p-6 mt-20 rounded-lg shadow-md w-[90%] md:w-[40%] lg:w-[30%] mx-auto text-center flex flex-col">
+        <div class="bg-[#FBEBA1] p-6 mt-32 rounded-lg shadow-md w-[90%] md:w-[40%] lg:w-[30%] mx-auto text-center flex flex-col">
             <h1 class="">Welcome!</h1>
             <h4 class="">Login into your account to continue</h4>
             <div>
