@@ -160,10 +160,12 @@ include('controller.php');
                 </div>
                 <div class="ml-2">
                     <p class="text-lg md:text-3xl font-bold text-left"><?= $data['name'] ?></p>
-                    <p>"<?= $data['description'] ?>"</p><br>
+                    <hr>
+                    <p class="text-xl my-2 font-bold">Rp <?= $data['price']?></p>
+                    <p class="text-sm">"<?= $data['description'] ?>"</p>
                     <p class="text-sm">Category: <?=$data['category']?></p>
                     <p class="text-sm">Country: <?= $data['country']?></p>
-                    <p class="text-sm">Rp <?= $data['price']?></p><br>
+                    
                     <p class="text-sm">Quantity:    </p>
                     <?php
 
@@ -180,9 +182,9 @@ include('controller.php');
 
 
                     ?>
-                        <form method="POST" action="addToCart.php" >
+                        <form method="POST" action="addToCart.php">
                             <input type="hidden" name="product_id" id="product_id" value="<?= $data['product_id'] ?>">
-                            <div class="quantity-control float-left">
+                            <div class="quantity-control float-right">
                                 <button class="minus-btn border border-gray-400 rounded-l-md px-2 py-1 bg-">-</button>
                                 <input type="number" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
                                 <button class="plus-btn border border-gray-400 rounded-r-md px-2 py-1">+</button>
@@ -194,12 +196,12 @@ include('controller.php');
                             <?php
                             } else {
                             ?>
-                                <button type="submit" name="update_cart border border-gray-200 rounded-md">Update Cart</button>
+                                <button type="submit" name="update_cart" class=" border border-gray-200 rounded-md">Update Cart</button>
                             <?php
                             }
                         } else if (!isset($_SESSION['user'])) {
                             ?>
-                            <a href="login.php" class="border rounded-md p-3 bg-orange-100 font-bold">Sign in to Buy</a>
+                            <a href="login.php"class="border rounded-md p-3 bg-orange-100 font-bold">Sign in to Buy</a>
                         <?php
                         } else if ($_SESSION['user']['admin'] == 1) {
                         ?>

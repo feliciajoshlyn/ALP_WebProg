@@ -166,10 +166,10 @@ include('controller.php');
             while ($data = $result->fetch_assoc()) {
                 ?>
                     <p>Product Name: <?= $data['name'] ?></p><br>
-                    <p>Description: <?= $data['description'] ?></p><br>
+                    <!-- <p>Description: <?= $data['description'] ?></p><br> -->
                     <img src="<?= $data['photo'] ?>" style="width:200px"><br>
-                    <p>Price: <?= $data['price'] ?></p>
-                    <p>Category: <?= $data['category'] ?></p>
+                    <!-- <p>Price: <?= $data['price'] ?></p> -->
+                    <!-- <p>Category: <?= $data['category'] ?></p> -->
                     <p>Country: <?= $data['country'] ?></p>
                     <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>">View Details</a>
 
