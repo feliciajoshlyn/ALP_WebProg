@@ -109,12 +109,17 @@ if (!isset($_SESSION['user']['customer_id'])) {
             </nav>
             <!-- cart -->
             <div class="flex flex-col items-center md:items-start md:w-full lg:w-full mx-auto p-4">
-                <div class="w-full text-center md:text-left">
-                    <p class="text-3xl font-bold m-3 mt-2 mb-4">Items in Cart</p>
+                <div class="w-full text-center md:text-left mt-1 mb-2">
+                    <p class="text-3xl font-bold m-3 mt-2 mb-4 md:ml-16">Items in Cart</p>
                 </div>
-                <div class="w-[90%] mx-auto grow bg-white bg-opacity-80 border border-gray-300 rounded-lg p-2 md:p-4 shadow-lg">
+                <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
                     <div class="grid">
                         <?php
+                        if($result->num_rows==0){
+                            ?>
+                            <p class="mx-auto text-slate-600 text-opacity-50">No Items in Cart</p>
+                            <?php
+                        }
                         while ($data = $result->fetch_assoc()) {
                         ?>
                             <div class="p-2 flex md:mx-1">
