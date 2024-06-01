@@ -77,6 +77,20 @@ if (!isset($_SESSION['user']['customer_id'])) {
             height: 100%;
             object-fit: cover;
         }
+
+        .back-button {
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                margin-bottom: 16px;
+                font-size: 1.5rem;
+            }
+
+            .back-button:hover ion-icon {
+                color: #3b4a8b;
+            }
     </style>
 
     <body class="bg-yellow-50 background-size:contain">
@@ -96,13 +110,13 @@ if (!isset($_SESSION['user']['customer_id'])) {
                     <li class="mx-4 my-6 md:my-0"><a href="index.php" class="font-medium hover:text-orange-200  duration-500">Home</a></li>
                     <li class="mx-4 my-6 md:my-0"><a href="viewItems.php" class="font-medium hover:text-orange-200  duration-500">Products</a></li>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php" class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="editProfile.php" class="font-medium hover:text-orange-200  duration-500">Edit Profile</a></li>
+                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="logout.php" class="font-medium hover:text-orange-200  duration-500">Logout</a></li>
                     <li class="mx-4 my-6 md:my-0 relative">
                         <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
                         <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
                             <a href="cart.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Cart</a>
-                            <a href="editProfile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit Profile</a>
+                            <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
                             <a href="logout.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
                         </div>
                     </li>
@@ -110,9 +124,12 @@ if (!isset($_SESSION['user']['customer_id'])) {
             </nav>
             <!-- cart -->
             <div class="flex flex-col items-center md:items-start md:w-full lg:w-full mx-auto p-4">
-                <div class="w-full text-center md:text-left mt-1 mb-2">
-                    <p class="text-3xl font-bold m-3 mt-2 mb-4 md:ml-16">Items in Cart</p>
-                </div>
+            <div class="w-full text-center md:text-left">
+                <button class="back-button md:hidden" onclick="history.back()">
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                </button>
+                <p class="text-3xl font-bold m-3 mb-4 md:ml-16">Items in Cart</p>
+            </div>
                 <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
                     <div class="grid">
                         <?php

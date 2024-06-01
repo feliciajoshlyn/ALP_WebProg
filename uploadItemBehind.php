@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
     <?php
     session_start();
     $product_name = $_POST['product_name'];
@@ -24,8 +15,6 @@
 
     include('controller.php');
     uploadItems($product_name, $description, $target_file, $price, $category, $country);
+    header("Location: viewItems.php")
+    // atau ke item details ya..?
     ?>
-    <h1>Product added, go back to page <a href="adminUpload.php">here.</a></h1>
-</body>
-
-</html>

@@ -47,7 +47,13 @@ session_start();
         <h2>sign in to access this feature</h2><?php } ?>
     <?php if (isset($_SESSION['user'])) {
         header("Location: index.php");
-    } ?>
+    }
+    if(isset($_GET['notFound'])){
+        ?>
+        <h1>Account Not Found</h1>
+        <?php
+    }
+     ?>
     <div>
         <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between">
             <div class="flex justify-between items-center">

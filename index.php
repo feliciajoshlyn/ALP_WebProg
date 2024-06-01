@@ -57,15 +57,26 @@
                 <li class="mx-4 my-6 md:my-0"><a href="index.php" class="font-medium hover:text-orange-200  duration-500">Home</a></li>
                 <li class="mx-4 my-6 md:my-0"><a href="viewItems.php" class="font-medium hover:text-orange-200  duration-500">Products</a></li>
 
-                <?php if (isset($_SESSION['user'])) { ?>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php" class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="editProfile.php" class="font-medium hover:text-orange-200  duration-500">Edit Profile</a></li>
+                <?php if (isset($_SESSION['user'])) {
+                    if ($_SESSION['user']['admin'] == 0) {
+                ?>
+                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php" class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
+                    <?php
+                    }
+                    ?>
+                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="logout.php" class="font-medium hover:text-orange-200  duration-500">Logout</a></li>
                     <li class="mx-4 my-6 md:my-0 relative">
                         <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
                         <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
-                            <a href="cart.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Cart</a>
-                            <a href="editProfile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Edit Profile</a>
+                            <?php
+                            if ($_SESSION['user']['admin'] == 0) {
+                            ?>
+                                <a href="cart.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Cart</a>
+                            <?php
+                            }
+                            ?>
+                            <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
                             <a href="logout.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
                         </div>
                     </li>
