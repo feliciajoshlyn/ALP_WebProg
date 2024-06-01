@@ -40,11 +40,12 @@ include('controller.php');
             transition: background-color 0.2s;
         }
 
-        img{
+        img {
             width: 150px;
             height: 150px;
             object-fit: cover;
         }
+        
 
         .quantity-control {
             display: flex;
@@ -119,7 +120,6 @@ include('controller.php');
                             ?>
                             <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
                             <a href="logout.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
-
                         <?php
                     } else {
                         ?>
@@ -154,19 +154,18 @@ include('controller.php');
         $data = $result->fetch_assoc();
         ?>
         <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
-            <div class="md:flex grow ">
+            <div class="md:flex grow md:m-5 md:mb-2 w-full">
                 <div>
                     <img src="<?= $data['photo'] ?>" class="w-full">
                 </div>
-                <div class="ml-2">
+                <div class="ml-2 md:ml-3">
                     <p class="text-lg md:text-3xl font-bold text-left"><?= $data['name'] ?></p>
                     <hr>
-                    <p class="text-xl my-2 font-bold">Rp <?= $data['price']?></p>
-                    <p class="text-sm">"<?= $data['description'] ?>"</p>
-                    <p class="text-sm">Category: <?=$data['category']?></p>
-                    <p class="text-sm">Country: <?= $data['country']?></p>
-                    
-                    <p class="text-sm">Quantity:    </p>
+                    <p class="text-xl my-2 font-bold">Rp <?= $data['price'] ?></p>
+                    <p class="text-sm mb-1 md:ml-0">Description: <br class="md:hidden"> "<?= $data['description'] ?>"</p>
+                    <p class="text-sm mb-1">Category: <?= $data['category'] ?></p>
+                    <p class="text-sm">Country: <?= $data['country'] ?></p>
+
                     <?php
 
                     if (isset($_SESSION['user']) && $_SESSION['user']['admin'] == 0) {
@@ -179,29 +178,29 @@ include('controller.php');
                             $request = viewRequest($_SESSION['user']['customer_id'], $data['product_id']);
                             $data['quantity'] = $request->fetch_assoc()['quantity'];
                         }
-
-
                     ?>
+                        <!-- quantity button -->
                         <form method="POST" action="addToCart.php">
                             <input type="hidden" name="product_id" id="product_id" value="<?= $data['product_id'] ?>">
-                            <div class="quantity-control float-right">
+                            <div class="quantity-control float-right mt-1">
                                 <button class="minus-btn border border-gray-400 rounded-l-md px-2 py-1 bg-">-</button>
                                 <input type="number" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
                                 <button class="plus-btn border border-gray-400 rounded-r-md px-2 py-1">+</button>
                             </div>
+                            <p class="text-sm pt-3">Quantity: </p>
                             <?php
                             if (checkProductinCart($_SESSION['user']['customer_id'], $data['product_id']) == false) {
                             ?>
-                                <button type="submit" name="add_to_cart" class="float-right border border-gray-200 rounded-md">Add to Cart</button>
+                                <button type="submit" name="add_to_cart" class="float-right border border-gray-200 rounded-md w-full mt-5 text-sm p-2">Add to Cart</button>
                             <?php
                             } else {
                             ?>
-                                <button type="submit" name="update_cart" class=" border border-gray-200 rounded-md">Update Cart</button>
+                                <button type="submit" name="update_cart" class=" border border-gray-200 rounded-md w-full mt-5 text-sm p-2">Update Cart</button>
                             <?php
                             }
                         } else if (!isset($_SESSION['user'])) {
                             ?>
-                            <a href="login.php"class="border rounded-md p-3 bg-orange-100 font-bold">Sign in to Buy</a>
+                            <a href="login.php" class="border rounded-md p-3 bg-orange-100 font-bold">Sign in to Buy</a>
                         <?php
                         } else if ($_SESSION['user']['admin'] == 1) {
                         ?>

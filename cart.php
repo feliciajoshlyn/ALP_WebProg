@@ -148,8 +148,9 @@ if (!isset($_SESSION['user']['customer_id'])) {
                                     </a>
                                 </div>
                                 <div class="ml-2 md:ml-4 md:text-right w-full p-1">
-                                    <p class=" md:text-left mb-6 md:mb-0"><?= $data['name'] ?> | x<?= $data['quantity'] ?></p>
-                                    <p class="md:text-xs text-sm md:mb-8 hidden md:block md:text-left ">description: <?= $data['description'] ?></p>
+                                    <p class=" md:text-left mb-0"><?= $data['name'] ?> | x<?= $data['quantity'] ?></p>
+                                    <p class="md:text-xs text-sm md:mb-1 hidden md:block md:text-left ">description: <?= $data['description'] ?></p>
+                                    <p class="md:text-xs text-sm mb-3 md:mb-4 md:text-left ">Rp <?= $data['price']*$data['quantity']?></p>
                                     <!-- just edit and delete button -->
                                     <a class="text-xs text-blue-300 hover:underline" href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>">Details</a><br class="md:hidden">
                                     <span class="hidden md:inline mx-2 text-blue-300">|</span>
