@@ -56,7 +56,7 @@
         <p>Price: <?= $data['price'] ?></p>
         <p>Category: <?= $data['category'] ?></p>
         <p>Country: <?= $data['country'] ?></p>
-        <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>"></a>
+        <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>">View Details</a>
     <?php
     }
     my_closeDB($conn);

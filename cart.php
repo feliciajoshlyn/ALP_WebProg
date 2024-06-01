@@ -112,7 +112,7 @@ if (!isset($_SESSION['user']['customer_id'])) {
                 <div class="w-full text-center md:text-left">
                     <p class="text-3xl font-bold m-3 mt-2 mb-4">Items in Cart</p>
                 </div>
-                <div class="w-[90%] mx-auto grow bg-white border border-gray-300 rounded-lg p-2 md:p-4">
+                <div class="w-[90%] mx-auto grow bg-white bg-opacity-80 border border-gray-300 rounded-lg p-2 md:p-4 shadow-lg">
                     <div class="grid">
                         <?php
                         while ($data = $result->fetch_assoc()) {
@@ -133,7 +133,7 @@ if (!isset($_SESSION['user']['customer_id'])) {
                                     <a class="text-xs text-red-300 hover:underline" href="deleteCartItem.php?product_id=<?= $data['product_id'] ?>">Remove</a>
                                 </div>
                             </div>
-                            <hr>
+                            <hr class="mb-2">
                     <?php
                         }
                     }
