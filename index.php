@@ -62,6 +62,10 @@
                 ?>
                         <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php" class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
                     <?php
+                    } else {
+                    ?>
+                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="adminViewUser.php" class="font-medium hover:text-orange-200  duration-500">View Users</a></li>
+                    <?php
                     }
                     ?>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
@@ -73,6 +77,10 @@
                             if ($_SESSION['user']['admin'] == 0) {
                             ?>
                                 <a href="cart.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Cart</a>
+                            <?php
+                            } else {
+                            ?>
+                                <a href="adminViewUser.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Users</a>
                             <?php
                             }
                             ?>
@@ -103,13 +111,13 @@
     </div>
     <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
 
-    <h1>hi guest</h1>
-<?php
+        <h1>hi guest</h1>
+    <?php
 
                 }
-?>
-</div>
-</div>
+    ?>
+    </div>
+    </div>
 </body>
 <script>
     function menu(e) {

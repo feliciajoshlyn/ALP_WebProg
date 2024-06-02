@@ -1,22 +1,25 @@
 <?php
 session_start();
 include('controller.php');
+
+$result = admingetUsers();
 ?>
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>viewItems</title>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <title>Cart</title>
+    </head>
     <style>
         body {
             font-family: 'poppins';
@@ -40,43 +43,23 @@ include('controller.php');
             transition: background-color 0.2s;
         }
 
-        .quantity-control {
-            display: flex;
-            align-items: center;
-        }
-
-        .minus-btn,
-        .plus-btn {
-            border: none;
-            padding: 5px;
-            cursor: pointer;
-        }
-
-        .quantity-input {
-            width: 30px;
-            text-align: center;
-            border: 1px solid #ccc;
-            padding: 5px;
-        }
-
         .back-button {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            margin-bottom: 16px;
-            font-size: 1.5rem;
-        }
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                margin-bottom: 16px;
+                font-size: 1.5rem;
+            }
 
-        .back-button:hover ion-icon {
-            color: #3b4a8b;
-        }
+            .back-button:hover ion-icon {
+                color: #3b4a8b;
+            }
     </style>
-</head>
 
-<body class="bg-yellow-50 background-size:contain">
-    <div>
+    <body class="bg-yellow-50 background-size:contain">
+        <div>
         <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
             <div class="flex justify-between items-center">
                 <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
@@ -97,10 +80,10 @@ include('controller.php');
                 ?>
                         <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php" class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
                     <?php
-                    } else {
-                    ?>
+                    }else{
+                        ?>
                         <li class="mx-4 my-6 md:my-0 md:hidden"><a href="adminViewUser.php" class="font-medium hover:text-orange-200  duration-500">View Users</a></li>
-                    <?php
+                        <?php
                     }
                     ?>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
@@ -113,10 +96,10 @@ include('controller.php');
                             ?>
                                 <a href="cart.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Cart</a>
                             <?php
-                            } else {
-                            ?>
+                            }else{
+                                ?>
                                 <a href="adminViewUser.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Users</a>
-                            <?php
+                                <?php
                             }
                             ?>
                             <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
@@ -139,75 +122,63 @@ include('controller.php');
                     </li>
             </ul>
         </nav>
-        <div class="flex flex-col items-center mt-16 md:mt-28 md:items-start md:w-full lg:w-full mx-auto p-4">
+            <!-- cart -->
+            <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
             <div class="w-full text-center md:text-left">
-                <button class="back-button text-left md:hidden" onclick="history.back()">
+                <button class="back-button md:hidden" onclick="history.back()">
                     <ion-icon name="arrow-back-outline"></ion-icon>
                 </button>
-                <p class="text-3xl font-bold m-3 md:mt-[-20px] mb-4 md:ml-16">View Items</p>
+                <p class="text-3xl font-bold m-3 mb-4 md:ml-16">Users</p>
             </div>
-            <?php
-            $conn = my_connectDB();
-
-            $sql = "";
-            if (isset($_GET['country'])) {
-                $sql = "SELECT * FROM products WHERE country =" . $_GET['country'];
-            } else {
-                $sql = "SELECT * FROM products";
-            }
-            $result = mysqli_query($conn, $sql);
-
-            //if admin
-            if ($_SESSION['user']['admin'] == 1) {
-            ?>
-                <div class="w-full text-left">
-                    <a href="adminUpload.php" class="text-left">Add Item</a>
+                <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
+                    <div class="grid">
+                        <?php
+                        if($result->num_rows==0){
+                            ?>
+                            <p class="mx-auto text-slate-600 text-opacity-50">No Users</p>
+                            <?php
+                        }
+                        while ($data = $result->fetch_assoc()) {
+                        ?>
+                            <div class="p-2 flex md:mx-1">
+                                <div class="ml-2 md:ml-4 md:text-right w-full p-1">
+                                    <p class=" md:text-left mb-0">Username: <?= $data['username'] ?></p>
+                                    <p class="md:text-xs text-sm md:mb-1 md:block md:text-left ">Email: <?= $data['email'] ?></p>
+                                    <p class="md:text-xs text-sm md:mb-1 md:block md:text-left ">Phone: <?= $data['telephone_num']?></p>
+                                    <p class="md:text-xs text-sm mb-3 md:mb-4 md:text-left ">Address: <br class="md:hidden"><?= $data['address']?></p>
+                                    <!-- just edit and delete button -->
+                                    <a class="text-xs text-blue-300 hover:underline" href="cart.php?user_id=<?= $data['customer_id'] ?>">View Cart</a><br class="md:hidden">
+                                </div>
+                            </div>
+                            <hr class="mb-2">
+                    <?php
+                        }
+                    ?>
+                    </div>
                 </div>
-            <?php
-            }
-            ?>
-            <!-- div for product -->
-            <div>
-                <?php
-
-                while ($data = $result->fetch_assoc()) {
-                ?>
-                    <p>Product Name: <?= $data['name'] ?></p><br>
-                    <!-- <p>Description: <?= $data['description'] ?></p><br> -->
-                    <img src="<?= $data['photo'] ?>" style="width:200px"><br>
-                    <!-- <p>Price: <?= $data['price'] ?></p> -->
-                    <!-- <p>Category: <?= $data['category'] ?></p> -->
-                    <p>Country: <?= $data['country'] ?></p>
-                    <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>">View Details</a>
-
-                <?php
-                }
-                my_closeDB($conn);
-                ?>
             </div>
         </div>
-    </div>
-</body>
-<script>
-    function menu(e) {
-        let list = document.querySelector('ul');
+    </body>
+    <script>
+        function menu(e) {
+            let list = document.querySelector('ul');
 
-        e.name === 'menu' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100')) : (e.name = "menu", list.classList.remove('top-[80px]'), list.classList.remove('opacity-100'))
-    }
-
-    function toggleDropdown() {
-        let dropdown = document.getElementById('dropdown');
-        dropdown.classList.toggle('hidden');
-    }
-
-    //tutup dropdown
-    document.addEventListener('click', function(event) {
-        let dropdown = document.getElementById('dropdown');
-        let profilePic = dropdown.previousElementSibling;
-        if (!dropdown.contains(event.target) && !profilePic.contains(event.target)) {
-            dropdown.classList.add('hidden');
+            e.name === 'menu' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100')) : (e.name = "menu", list.classList.remove('top-[80px]'), list.classList.remove('opacity-100'))
         }
-    });
-</script>
 
-</html>
+        function toggleDropdown() {
+            let dropdown = document.getElementById('dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        //tutup dropdown
+        document.addEventListener('click', function(event) {
+            let dropdown = document.getElementById('dropdown');
+            let profilePic = dropdown.previousElementSibling;
+            if (!dropdown.contains(event.target) && !profilePic.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
+
+    </html>

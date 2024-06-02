@@ -186,3 +186,13 @@ function cartItemDelete($product_id)
 
     my_closeDB($conn);
 }
+
+function admingetUsers(){
+    $conn = my_connectDB();
+
+    $sql = "SELECT * FROM customers WHERE admin = 0";
+    $result = mysqli_query($conn, $sql);
+
+    my_closeDB($conn);
+    return $result;
+}

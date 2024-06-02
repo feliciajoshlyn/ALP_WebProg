@@ -79,6 +79,10 @@ include('controller.php');
                 ?>
                         <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php" class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
                     <?php
+                    } else {
+                    ?>
+                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="adminViewUser.php" class="font-medium hover:text-orange-200  duration-500">View Users</a></li>
+                    <?php
                     }
                     ?>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
@@ -91,12 +95,27 @@ include('controller.php');
                             ?>
                                 <a href="cart.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Cart</a>
                             <?php
+                            } else {
+                            ?>
+                                <a href="adminViewUser.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Users</a>
+                            <?php
                             }
                             ?>
                             <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
                             <a href="logout.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+                        <?php
+                    } else {
+                        ?>
+                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="login.php" class="font-medium hover:text-orange-200  duration-500">Login</a></li>
+                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="register.php" class="font-medium hover:text-orange-200  duration-500">Register</a></li>
+                    <li class="mx-4 my-6 md:my-0 relative">
+                        <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
+                        <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
+                            <a href="login.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
+                            <a href="register.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Register</a>
 
                         <?php
+
                     } ?>
                         </div>
                     </li>

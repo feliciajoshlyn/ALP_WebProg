@@ -67,7 +67,7 @@ $address = $_SESSION['user']['address'];
 
 <body class="bg-yellow-50 background-size:contain">
     <div>
-        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed left-0 top-0 z-50">
+        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
             <div class="flex justify-between items-center">
                 <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
                 <span class="text-xl cursor-pointer font-semibold">
@@ -87,6 +87,10 @@ $address = $_SESSION['user']['address'];
                 ?>
                         <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php" class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
                     <?php
+                    } else {
+                    ?>
+                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="adminViewUser.php" class="font-medium hover:text-orange-200  duration-500">View Users</a></li>
+                    <?php
                     }
                     ?>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
@@ -99,11 +103,14 @@ $address = $_SESSION['user']['address'];
                             ?>
                                 <a href="cart.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Cart</a>
                             <?php
+                            } else {
+                            ?>
+                                <a href="adminViewUser.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Users</a>
+                            <?php
                             }
                             ?>
                             <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
                             <a href="logout.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
-
                         <?php
                     } else {
                         ?>

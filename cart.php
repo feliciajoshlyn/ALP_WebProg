@@ -4,7 +4,11 @@ include('controller.php');
 if (!isset($_SESSION['user']['customer_id'])) {
     header("Location: login.php?signedIn=no");
 } else {
-    $result = viewCart($_SESSION['user']['customer_id']);
+    if (isset($_GET['user_id']) && $_SESSION['user']['admin'] == 1) {
+        $result = viewCart($_GET['user_id']);
+    } else {
+        $result = viewCart($_SESSION['user']['customer_id']);
+    }
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -79,64 +83,99 @@ if (!isset($_SESSION['user']['customer_id'])) {
         }
 
         .back-button {
-                background-color: transparent;
-                border: none;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                margin-bottom: 16px;
-                font-size: 1.5rem;
-            }
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+        }
 
-            .back-button:hover ion-icon {
-                color: #3b4a8b;
-            }
+        .back-button:hover ion-icon {
+            color: #3b4a8b;
+        }
     </style>
 
     <body class="bg-yellow-50 background-size:contain">
         <div>
-            <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
-                <div class="flex justify-between items-center">
-                    <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
-                    <span class="text-xl cursor-pointer font-semibold">
-                        TitipinAja.com
-                    </span>
-                    <span class="text-3xl cursor-pointer sm:hidden block mx-2">
-                        <ion-icon name="menu" onclick="menu(this)"></ion-icon>
-                    </span>
-                </div>
+        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
+            <div class="flex justify-between items-center">
+                <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
+                <span class="text-xl cursor-pointer font-semibold">
+                    TitipinAja.com
+                </span>
+                <span class="text-3xl cursor-pointer sm:hidden block mx-2">
+                    <ion-icon name="menu" onclick="menu(this)"></ion-icon>
+                </span>
+            </div>
 
-                <ul id="slide" class="bg-red-800 sm:flex sm:items-center z-50 sm:z-auto sm:static absolute w-full left-0 sm:w-auto sm:py-0 py-4 sm:pl-0 pl-7 sm:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
-                    <li class="mx-4 my-6 md:my-0"><a href="index.php" class="font-medium hover:text-orange-200  duration-500">Home</a></li>
-                    <li class="mx-4 my-6 md:my-0"><a href="viewItems.php" class="font-medium hover:text-orange-200  duration-500">Products</a></li>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php" class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
+            <ul id="slide" class="bg-red-800 sm:flex sm:items-center z-50 sm:z-auto sm:static absolute w-full left-0 sm:w-auto sm:py-0 py-4 sm:pl-0 pl-7 sm:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
+                <li class="mx-4 my-6 md:my-0"><a href="index.php" class="font-medium hover:text-orange-200  duration-500">Home</a></li>
+                <li class="mx-4 my-6 md:my-0"><a href="viewItems.php" class="font-medium hover:text-orange-200  duration-500">Products</a></li>
+
+                <?php if (isset($_SESSION['user'])) {
+                    if ($_SESSION['user']['admin'] == 0) {
+                ?>
+                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php" class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
+                    <?php
+                    }else{
+                        ?>
+                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="adminViewUser.php" class="font-medium hover:text-orange-200  duration-500">View Users</a></li>
+                        <?php
+                    }
+                    ?>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="logout.php" class="font-medium hover:text-orange-200  duration-500">Logout</a></li>
                     <li class="mx-4 my-6 md:my-0 relative">
                         <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
                         <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
-                            <a href="cart.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Cart</a>
+                            <?php
+                            if ($_SESSION['user']['admin'] == 0) {
+                            ?>
+                                <a href="cart.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Cart</a>
+                            <?php
+                            }else{
+                                ?>
+                                <a href="adminViewUser.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Users</a>
+                                <?php
+                            }
+                            ?>
                             <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
                             <a href="logout.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+                        <?php
+                    } else {
+                        ?>
+                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="login.php" class="font-medium hover:text-orange-200  duration-500">Login</a></li>
+                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="register.php" class="font-medium hover:text-orange-200  duration-500">Register</a></li>
+                    <li class="mx-4 my-6 md:my-0 relative">
+                        <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
+                        <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
+                            <a href="login.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
+                            <a href="register.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Register</a>
+
+                        <?php
+
+                    } ?>
                         </div>
                     </li>
-                </ul>
-            </nav>
+            </ul>
+        </nav>
             <!-- cart -->
             <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
-            <div class="w-full text-center md:text-left">
-                <button class="back-button md:hidden" onclick="history.back()">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                </button>
-                <p class="text-3xl font-bold m-3 mb-4 md:ml-16">Items in Cart</p>
-            </div>
+                <div class="w-full text-center md:text-left">
+                    <button class="back-button <?php if($_SESSION['user']['admin']==0){?>md:hidden <?php } ?>" onclick="history.back()">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </button>
+                    <p class="text-3xl font-bold m-3 mb-4 md:ml-16">Items in Cart</p>
+                </div>
                 <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
                     <div class="grid">
                         <?php
-                        if($result->num_rows==0){
-                            ?>
+                        if ($result->num_rows == 0) {
+                        ?>
                             <p class="mx-auto text-slate-600 text-opacity-50">No Items in Cart</p>
-                            <?php
+                        <?php
                         }
                         while ($data = $result->fetch_assoc()) {
                         ?>
@@ -150,11 +189,17 @@ if (!isset($_SESSION['user']['customer_id'])) {
                                 <div class="ml-2 md:ml-4 md:text-right w-full p-1">
                                     <p class=" md:text-left mb-0"><?= $data['name'] ?> | x<?= $data['quantity'] ?></p>
                                     <p class="md:text-xs text-sm md:mb-1 hidden md:block md:text-left ">description: <?= $data['description'] ?></p>
-                                    <p class="md:text-xs text-sm mb-3 md:mb-4 md:text-left ">Rp <?= $data['price']*$data['quantity']?></p>
+                                    <p class="md:text-xs text-sm mb-3 md:mb-4 md:text-left ">Rp <?= $data['price'] * $data['quantity'] ?></p>
                                     <!-- just edit and delete button -->
                                     <a class="text-xs text-blue-300 hover:underline" href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>">Details</a><br class="md:hidden">
-                                    <span class="hidden md:inline mx-2 text-blue-300">|</span>
-                                    <a class="text-xs text-red-300 hover:underline" href="deleteCartItem.php?product_id=<?= $data['product_id'] ?>">Remove</a>
+                                    <?php
+                                    if ($_SESSION['user']['admin'] == 0) {
+                                    ?>
+                                        <span class="hidden md:inline mx-2 text-blue-300">|</span>
+                                        <a class="text-xs text-red-300 hover:underline" href="deleteCartItem.php?product_id=<?= $data['product_id'] ?>">Remove</a>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <hr class="mb-2">
