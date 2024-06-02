@@ -67,7 +67,7 @@ $address = $_SESSION['user']['address'];
 
 <body class="bg-yellow-50 background-size:contain">
     <div>
-        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between">
+        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed left-0 top-0 z-50">
             <div class="flex justify-between items-center">
                 <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
                 <span class="text-xl cursor-pointer font-semibold">
@@ -89,7 +89,7 @@ $address = $_SESSION['user']['address'];
                     <?php
                     }
                     ?>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="editProfile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
+                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="logout.php" class="font-medium hover:text-orange-200  duration-500">Logout</a></li>
                     <li class="mx-4 my-6 md:my-0 relative">
                         <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
@@ -101,7 +101,7 @@ $address = $_SESSION['user']['address'];
                             <?php
                             }
                             ?>
-                            <a href="editProfile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
+                            <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
                             <a href="logout.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
 
                         <?php
@@ -122,23 +122,42 @@ $address = $_SESSION['user']['address'];
                     </li>
             </ul>
         </nav>
-        <div class="flex flex-col items-center md:items-start md:w-full lg:w-full mx-auto p-4">
+        <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
             <div class="w-full text-center md:text-left">
                 <button class="back-button" onclick="history.back()">
                     <ion-icon name="arrow-back-outline"></ion-icon>
                 </button>
-                <p class="text-3xl font-bold m-3 mt-[-20px] mb-4 md:ml-16">Edit Profile</p>
+                <p class="text-3xl font-bold m-3 mb-4 md:ml-16">Edit Profile</p>
             </div>
-            <form method="POST" action="editProfileBehind.php">
-                <input type="hidden" value="<?= $user_id ?>" name="user_id">
-                Username: <input type="text" value="<?= $username ?>" name="username"><br>
-                Email: <input type="text" value="<?= $email ?>" name="email" placeholder="example@gmail.com"><br>
-                Password: <input type="password" value="<?= $password ?>" name="password">
-                Phone number:<input type="text" value="<?= $telephone_num ?>" name="telephone_num" id="telephone_num" class="" placeholder="123-456-7890" required /><br>
-                Address: <input type="text" value="<?= $address ?>" name="address">
-                <input type="submit" name="ok">
-            </form>
-            delete jgn lupa ya
+            <div class="w-[90%] md:w-[70%] lg:w-[75%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
+                <form method="POST" action="editProfileBehind.php" class="">
+                    <input type="hidden" value="<?= $user_id ?>" name="user_id">
+                    <div class="my-4 mx-4">
+                        <label for="username" class="block text-lg font-medium">Username:</label>
+                        <input type="text" id="username" name="username" value="<?= $username ?>" class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div class="my-4 mx-4">
+                        <label for="email" class="block text-lg font-medium">Email:</label>
+                        <input type="email" id="email" name="email" value="<?= $email ?>" placeholder="example@gmail.com" class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div class="my-4 mx-4">
+                        <label for="password" class="block text-lg font-medium">Password:</label>
+                        <input type="password" id="password" name="password" value="<?= $password ?>" class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div class="my-4 mx-4">
+                        <label for="telephone_num" class="block text-lg font-medium">Phone number:</label>
+                        <input type="text" id="telephone_num" name="telephone_num" value="<?= $telephone_num ?>" placeholder="123-456-7890" required class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div class="my-4 mx-4">
+                        <label for="address" class="block text-lg font-medium">Address:</label>
+                        <input type="text" id="address" name="address" value="<?= $address ?>" class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div class="flex flex-col md:flex-row space-y-2 md:space-x-2 justify-end mt-10 mx-4 md:mx-0">
+                        <input type="submit" name="ok" value="Save Changes" class="px-4 py-2 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-blue-700">
+                        <button type="button" onclick="location.href='deleteProfile.php'" class="px-4 py-2 bg-red-600 text-white rounded-lg cursor-pointer hover:bg-red-700">Delete Account</button>
+                    </div>
+                </form>
+            </div>
         </div>
 </body>
 <script>
