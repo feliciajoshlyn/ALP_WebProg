@@ -158,7 +158,7 @@ include('controller.php');
                 <div>
                     <img src="<?= $data['photo'] ?>" class="w-full">
                 </div>
-                <div class="ml-2 md:ml-3">
+                <div class="mx-2 md:mx-3 flex flex-col grow">
                     <p class="text-lg md:text-3xl font-bold text-left"><?= $data['name'] ?></p>
                     <hr>
                     <p class="text-xl my-2 font-bold">Rp <?= $data['price'] ?></p>
@@ -182,7 +182,7 @@ include('controller.php');
                         <!-- quantity button -->
                         <form method="POST" action="addToCart.php">
                             <input type="hidden" name="product_id" id="product_id" value="<?= $data['product_id'] ?>">
-                            <div class="quantity-control float-right mt-1">
+                            <div class="quantity-control float-right mt-1 mr-3">
                                 <button class="minus-btn border border-gray-400 rounded-l-md px-2 py-1 bg-">-</button>
                                 <input type="number" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
                                 <button class="plus-btn border border-gray-400 rounded-r-md px-2 py-1">+</button>
@@ -195,7 +195,7 @@ include('controller.php');
                             <?php
                             } else {
                             ?>
-                                <button type="submit" name="update_cart" class=" border border-gray-200 rounded-md w-full mt-5 text-sm p-2">Update Cart</button>
+                                <button type="submit" name="update_cart" class=" border border-gray-200 rounded-md w-full mt-5 text-sm p-2 pl-4">Update Cart</button>
                             <?php
                             }
                         } else if (!isset($_SESSION['user'])) {
