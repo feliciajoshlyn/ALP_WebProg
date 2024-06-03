@@ -158,12 +158,14 @@ include('controller.php');
             $result = mysqli_query($conn, $sql);
 
             //if admin
-            if ($_SESSION['user']['admin'] == 1) {
+            if (isset($_SESSION['user'])) {
+                if ($_SESSION['user']['admin'] == 1) {
             ?>
-                <div class="w-full text-left">
-                    <a href="adminUpload.php" class="text-left">Add Item</a>
-                </div>
+                    <div class="w-full text-left">
+                        <a href="adminUpload.php" class="text-left">Add Item</a>
+                    </div>
             <?php
+                }
             }
             ?>
             <!-- div for product -->

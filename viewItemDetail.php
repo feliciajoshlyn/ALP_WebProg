@@ -191,11 +191,11 @@ include('controller.php');
                             <?php
                             if (checkProductinCart($_SESSION['user']['customer_id'], $data['product_id']) == false) {
                             ?>
-                                <button type="submit" name="add_to_cart" class="float-right border border-gray-200 rounded-md w-full mt-5 text-sm p-2">Add to Cart</button>
+                                <button type="submit" name="add_to_cart" class=" border border-gray-200 rounded-md w-full mt-5 text-sm p-2">Add to Cart</button>
                             <?php
                             } else {
                             ?>
-                                <button type="submit" name="update_cart" class=" border border-gray-200 rounded-md w-full mt-5 text-sm p-2 pl-4">Update Cart</button>
+                                <button type="submit" name="update_cart" class=" border border-gray-200 rounded-md w-full mt-5 text-sm p-2">Update Cart</button>
                             <?php
                             }
                         } else if (!isset($_SESSION['user'])) {
@@ -204,8 +204,8 @@ include('controller.php');
                         <?php
                         } else if ($_SESSION['user']['admin'] == 1) {
                         ?>
-                            <div>
-                                <a href="updateItem.php?update_id=<?= $data['product_id'] ?>">Edit Item</a> | <a href="deleteItem.php">delete</a>
+                            <div class="text-right mr-5">
+                                <a href="updateItem.php?update_id=<?= $data['product_id'] ?>" class="text-blue-400">Edit Item</a> | <a href="deleteItem.php?delete_id=<?= $data['product_id']?>" class="text-red-400">Delete</a>
                             </div>
                         <?php
                         }
