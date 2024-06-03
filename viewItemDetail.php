@@ -45,7 +45,7 @@ include('controller.php');
             height: 150px;
             object-fit: cover;
         }
-        
+
 
         .quantity-control {
             display: flex;
@@ -104,6 +104,10 @@ include('controller.php');
                 ?>
                         <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php" class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
                     <?php
+                    } else {
+                    ?>
+                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="adminViewUser.php" class="font-medium hover:text-orange-200  duration-500">View Users</a></li>
+                    <?php
                     }
                     ?>
                     <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
@@ -115,6 +119,10 @@ include('controller.php');
                             if ($_SESSION['user']['admin'] == 0) {
                             ?>
                                 <a href="cart.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Cart</a>
+                            <?php
+                            } else {
+                            ?>
+                                <a href="adminViewUser.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Users</a>
                             <?php
                             }
                             ?>
@@ -205,7 +213,7 @@ include('controller.php');
                         } else if ($_SESSION['user']['admin'] == 1) {
                         ?>
                             <div class="text-right mr-5">
-                                <a href="updateItem.php?update_id=<?= $data['product_id'] ?>" class="text-blue-400">Edit Item</a> | <a href="deleteItem.php?delete_id=<?= $data['product_id']?>" class="text-red-400">Delete</a>
+                                <a href="updateItem.php?update_id=<?= $data['product_id'] ?>" class="text-blue-400">Edit Item</a> | <a href="deleteItem.php?delete_id=<?= $data['product_id'] ?>" class="text-red-400">Delete</a>
                             </div>
                         <?php
                         }

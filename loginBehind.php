@@ -17,5 +17,5 @@ if ($result->num_rows > 0) {
     // }
     header("Location: index.php");
 }else{
-    header("Location: login.php?notFound=1");
+    header("Location: login.php?userNotFound=1");
 }
