@@ -181,9 +181,9 @@ include('controller.php');
                         $data['quantity'] = 1;
 
                         // checks if it exists
-                        if (checkProductinCart($_SESSION['user']['customer_id'], $data['product_id']) == 1) {
+                        if (checkProductInButNotConfirmed($_SESSION['user']['customer_id'], $data['product_id']) == 1) {
                             // grabs the data and sets it to $data['quantity']
-                            $request = viewRequest($_SESSION['user']['customer_id'], $data['product_id']);
+                            $request = viewUnconfirmedRequest($_SESSION['user']['customer_id'], $data['product_id']);
                             $data['quantity'] = $request->fetch_assoc()['quantity'];
                         }
                     ?>
@@ -192,12 +192,12 @@ include('controller.php');
                             <input type="hidden" name="product_id" id="product_id" value="<?= $data['product_id'] ?>">
                             <div class="quantity-control float-right mt-1 mr-3">
                                 <button class="minus-btn border border-gray-400 rounded-l-md px-2 py-1 bg-">-</button>
-                                <input type="number" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
+                                <input type="text" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
                                 <button class="plus-btn border border-gray-400 rounded-r-md px-2 py-1">+</button>
                             </div>
                             <p class="text-sm pt-3">Quantity: </p>
                             <?php
-                            if (checkProductinCart($_SESSION['user']['customer_id'], $data['product_id']) == false) {
+                            if (checkProductInButNotConfirmed($_SESSION['user']['customer_id'], $data['product_id']) == false) {
                             ?>
                                 <button type="submit" name="add_to_cart" class=" border border-gray-200 rounded-md w-full mt-5 text-sm p-2">Add to Cart</button>
                             <?php

@@ -7,7 +7,7 @@ if (!isset($_SESSION['user']['customer_id'])) {
     if (isset($_GET['user_id']) && $_SESSION['user']['admin'] == 1) {
         $result = viewConfirmed($_GET['user_id']);
     } else {
-        $result = viewCart($_SESSION['user']['customer_id']);
+        $result = viewConfirmed($_SESSION['user']['customer_id']);
     }
 ?>
     <!DOCTYPE html>
@@ -161,24 +161,23 @@ if (!isset($_SESSION['user']['customer_id'])) {
                         </li>
                 </ul>
             </nav>
-
             <!-- cart -->
             <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
                 <div class="w-full text-center md:text-left">
-                    <button class="back-button <?php if ($_SESSION['user']['admin'] == 0) { ?>md:hidden <?php } ?>" onclick="history.back()">
+                    <button class="back-button" onclick="history.back()">
                         <ion-icon name="arrow-back-outline"></ion-icon>
                     </button>
-                    <p class="text-3xl font-bold m-3 mb-4 md:ml-16">Items in Cart</p>
+                    <p class="text-3xl font-bold m-3 mb-4 md:ml-16">Confirmed Items</p>
                 </div>
                 <div class="w-[90%] lg:w-[80%] mx-auto mb-2 flex justify-end">
-                    <button onclick="location.href='confirmedItems.php'" class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mr-2">Confirmed Items</button>
+                    <button onclick="location.href='cart.php'" class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mr-2">View Cart</button>
                 </div>
                 <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
                     <div class="grid">
                         <?php
                         if ($result->num_rows == 0) {
                         ?>
-                            <p class="mx-auto text-slate-600 text-opacity-50">No Items in Cart</p>
+                            <p class="mx-auto text-slate-600 text-opacity-50">No Items Confirmed</p>
                         <?php
                         }
                         while ($data = $result->fetch_assoc()) {
@@ -196,27 +195,10 @@ if (!isset($_SESSION['user']['customer_id'])) {
                                     <p class="md:text-xs text-sm mb-3 md:mb-4 md:text-left ">Rp <?= $data['price'] * $data['quantity'] ?></p>
                                     <!-- just edit and delete button -->
                                     <a class="text-xs text-blue-300 hover:underline" href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>">Details</a><br class="md:hidden">
-                                    <?php
-                                    if ($_SESSION['user']['admin'] == 0) {
-                                    ?>
-                                        <span class="hidden md:inline mx-2 text-blue-300">|</span>
-                                        <a class="text-xs text-red-300 hover:underline" href="deleteCartItem.php?product_id=<?= $data['product_id'] ?>">Remove</a>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <span class="hidden md:inline mx-2 text-blue-300">|</span>
-                                        <p class="text-xs text-green-300">CONFIRMED/p>
-                                        <?php
-                                    }
-                                        ?>
+                                    <p class="text-xs text-green-300"> CONFIRMED</p>
                                 </div>
                             </div>
                             <hr class="mb-2">
-                        <?php
-                        }
-                        if ($result->num_rows > 0) {
-                        ?>
-                            <button onclick="location.href='confirmItemsBehind.php'">Confirm Items</button>
                     <?php
                         }
                     }
