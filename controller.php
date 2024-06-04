@@ -108,6 +108,17 @@ function getItemDetails($product_id)
     return $result;
 }
 
+//delete item
+function deleteItem($product_id)
+{
+    $conn = my_connectDB();
+
+    $sql = "DELETE FROM products WHERE product_id = '$product_id'";
+    $result = mysqli_query($conn, $sql) or die();
+
+    my_closeDB($conn);
+}
+
 //Customers view carts
 function viewCart($user_id)
 {

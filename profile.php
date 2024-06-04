@@ -121,12 +121,41 @@ include('controller.php');
                     </li>
             </ul>
         </nav>
+
         <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
             <div class="w-full text-center md:text-left">
-                <button class="back-button text-left md:hidden" onclick="history.back()">
+                <button class="back-button" onclick="history.back()">
                     <ion-icon name="arrow-back-outline"></ion-icon>
                 </button>
                 <p class="text-3xl font-bold m-3 mb-4 md:ml-16">Profile</p>
+            </div>
+            <div class="w-[90%] md:w-[70%] lg:w-[75%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
+                <form method="POST" action="editProfileBehind.php" class="">
+                    <input type="hidden" value="<?= $user_id ?>" name="user_id">
+                    <div class="my-4 mx-4">
+                        <label for="username" class="block text-lg font-medium">Username: </label>
+                        <p class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"><?= $_SESSION['user']['username'] ?></p>
+                    </div>
+                    <div class="my-4 mx-4">
+                        <label for="email" class="block text-lg font-medium">Email:</label>
+                        <p class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"><?= $_SESSION['user']['email'] ?></p>
+                    </div>
+                    <div class="my-4 mx-4">
+                        <label for="password" class="block text-lg font-medium">Password:</label>
+                        <p class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"><?= $_SESSION['user']['password'] ?></p>
+                    </div>
+                    <div class="my-4 mx-4">
+                        <label for="telephone_num" class="block text-lg font-medium">Phone number:</label>
+                        <p class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"><?= $_SESSION['user']['telephone_num'] ?></p>
+                    </div>
+                    <div class="my-4 mx-4">
+                        <label for="address" class="block text-lg font-medium">Address:</label>
+                        <p class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"><?= $_SESSION['user']['address'] ?></p>
+                    </div>
+                    <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 justify-end mt-10 mx-4 md:mx-0">
+                    <button type="button" onclick="location.href='editProfile.php'" class="px-4 py-2 bg-blue-500 text-white hover:text-blue-400 border border-blue-300 hover:bg-white rounded-lg cursor-pointer">Edit Account</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

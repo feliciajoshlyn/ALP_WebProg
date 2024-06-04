@@ -144,7 +144,7 @@ include('controller.php');
                 <button class="back-button text-left md:hidden" onclick="history.back()">
                     <ion-icon name="arrow-back-outline"></ion-icon>
                 </button>
-                <p class="text-3xl font-bold m-3 md:mt-[-20px] mb-4 md:ml-16">View Items</p>
+                <p class="text-3xl font-bold m-3 md:mt-[-20px] mb-4 md:ml-16 ">View Items</p>
             </div>
             <?php
             $conn = my_connectDB();
@@ -180,7 +180,7 @@ include('controller.php');
                     <!-- <p>Price: <?= $data['price'] ?></p> -->
                     <!-- <p>Category: <?= $data['category'] ?></p> -->
                     <p>Country: <?= $data['country'] ?></p>
-                    <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>">View Details</a>
+                    <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>" class="text-blue-300">View Details</a>
 
                 <?php
                 }

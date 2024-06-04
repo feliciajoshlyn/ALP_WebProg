@@ -169,9 +169,15 @@ if (!isset($_SESSION['user']['customer_id'])) {
                     </button>
                     <p class="text-3xl font-bold m-3 mb-4 md:ml-16">Confirmed Items</p>
                 </div>
+                <?php
+                if($_SESSION['user']['admin']==0){ 
+                ?>
                 <div class="w-[90%] lg:w-[80%] mx-auto mb-2 flex justify-end">
                     <button onclick="location.href='cart.php'" class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mr-2">View Cart</button>
                 </div>
+                <?php
+                }
+                ?>
                 <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
                     <div class="grid">
                         <?php
