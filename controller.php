@@ -168,6 +168,16 @@ function viewUnconfirmedRequest($user_id, $product_id)
     return $result;
 }
 
+//approve Items by admin
+function approveItem($request_id){
+    $conn = my_connectDB();
+
+    $sql = "UPDATE customer_request SET approved = 1 WHERE request_id = '$request_id'";
+    $result = mysqli_query($conn, $sql);
+
+    my_closeDB($conn);
+}
+
 //Customers add to cart
 function addToCart($product_id, $quantity)
 {

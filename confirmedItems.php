@@ -170,11 +170,11 @@ if (!isset($_SESSION['user']['customer_id'])) {
                     <p class="text-3xl font-bold m-3 mb-4 md:ml-16">Confirmed Items</p>
                 </div>
                 <?php
-                if($_SESSION['user']['admin']==0){ 
+                if ($_SESSION['user']['admin'] == 0) {
                 ?>
-                <div class="w-[90%] lg:w-[80%] mx-auto mb-2 flex justify-end">
-                    <button onclick="location.href='cart.php'" class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mr-2">View Cart</button>
-                </div>
+                    <div class="w-[90%] lg:w-[80%] mx-auto mb-2 flex justify-end">
+                        <button onclick="location.href='cart.php'" class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mr-2">View Cart</button>
+                    </div>
                 <?php
                 }
                 ?>
@@ -202,6 +202,17 @@ if (!isset($_SESSION['user']['customer_id'])) {
                                     <!-- just edit and delete button -->
                                     <a class="text-xs text-blue-300 hover:underline" href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>">Details</a><br class="md:hidden">
                                     <p class="text-xs text-green-300"> CONFIRMED</p>
+                                    <?php
+                                    if ($data['approved'] == 0 && $_SESSION['user']['admin']==1) {
+                                    ?>
+                                        <a href="itemApproval.php?request_id=<?= $data['request_id'] ?>&user_id=<?= $data['customer_id']?>" class=" text-xs text-red-300 hover:underline">approve item</a>
+                                    <?php
+                                    }else if($data['approved']==1){
+                                        ?>
+                                        <p class="text-xs text-red-300 font-bold">approved</p>
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <hr class="mb-2">
@@ -212,6 +223,26 @@ if (!isset($_SESSION['user']['customer_id'])) {
                     </div>
                 </div>
             </div>
+            <footer
+            class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center">
+            <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
+                <h3 class="font-bold text-lg mb-2">Navigation</h3>
+                <div class="font-normal space-y-1 text-center sm:text-left">
+                    <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
+                    <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
+                <h3 class="font-bold text-lg mb-2">Contact</h3>
+                <div class="font-normal space-y-1 text-center sm:text-left">
+                    <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
+                    <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+                </div>
+            </div>
+            <div class="w-full flex justify-center">
+                <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
+            </div>
+        </footer>
         </div>
     </body>
     <script>
