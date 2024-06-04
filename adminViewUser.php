@@ -147,7 +147,7 @@ $result = admingetUsers();
                                     <p class="md:text-xs text-sm md:mb-1 md:block md:text-left ">Phone: <?= $data['telephone_num']?></p>
                                     <p class="md:text-xs text-sm mb-3 md:mb-4 md:text-left ">Address: <br class="md:hidden"><?= $data['address']?></p>
                                     <!-- just edit and delete button -->
-                                    <a class="text-xs text-blue-300 hover:underline" href="cart.php?user_id=<?= $data['customer_id'] ?>">View Cart</a><br class="md:hidden">
+                                    <a class="text-xs text-blue-300 hover:underline" href="cart.php?user_id=<?= $data['customer_id'] ?>">View Items</a><br class="md:hidden">
                                 </div>
                             </div>
                             <hr class="mb-2">

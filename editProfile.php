@@ -142,6 +142,13 @@ $address = $_SESSION['user']['address'];
                     <div class="my-4 mx-4">
                         <label for="username" class="block text-lg font-medium">Username:</label>
                         <input type="text" id="username" name="username" value="<?= $username ?>" class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <?php
+                        if(isset($_GET['sameUsername'])==1){
+                            ?>
+                                <p class="text-red-500">Same Username Found!! please use another username</p>
+                            <?php
+                        }
+                        ?>
                     </div>
                     <div class="my-4 mx-4">
                         <label for="email" class="block text-lg font-medium">Email:</label>
@@ -159,9 +166,9 @@ $address = $_SESSION['user']['address'];
                         <label for="address" class="block text-lg font-medium">Address:</label>
                         <input type="text" id="address" name="address" value="<?= $address ?>" class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
                     </div>
-                    <div class="flex flex-col md:flex-row space-y-2 md:space-x-2 justify-end mt-10 mx-4 md:mx-0">
-                        <input type="submit" name="ok" value="Save Changes" class="px-4 py-2 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-blue-700">
-                        <button type="button" onclick="location.href='deleteProfile.php'" class="px-4 py-2 bg-red-600 text-white rounded-lg cursor-pointer hover:bg-red-700">Delete Account</button>
+                    <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 justify-end mt-10 mx-4 md:mx-0">
+                        <input type="submit" name="ok" value="Save Changes" class="px-4 py-2 bg-blue-500 text-white hover:text-blue-400 border border-blue-300 hover:bg-white rounded-lg cursor-pointer">
+                        <button type="button" onclick="location.href='deleteProfile.php'" class="px-4 py-2 bg-red-500 text-white hover:text-red-400 border border-red-300 hover:bg-white rounded-lg cursor-pointer">Delete Account</button>
                     </div>
                 </form>
             </div>

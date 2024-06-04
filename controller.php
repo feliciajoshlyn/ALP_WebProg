@@ -97,7 +97,8 @@ function uploadItems($name, $desc, $image, $price, $category, $country)
 }
 
 //get details of item
-function getItemDetails($product_id){
+function getItemDetails($product_id)
+{
     $conn = my_connectDB();
 
     $sql = "SELECT * FROM products WHERE product_id = $product_id";
@@ -112,7 +113,7 @@ function viewCart($user_id)
 {
     $conn = my_connectDB();
 
-    $sql = "SELECT * FROM products INNER JOIN customer_request ON products.product_id = customer_request.product_id WHERE customer_id = $user_id";
+    $sql = "SELECT * FROM products INNER JOIN customer_request ON products.product_id = customer_request.product_id WHERE customer_id = $user_id AND confirmed =  0";
     $result = mysqli_query($conn, $sql);
 
     my_closeDB($conn);
@@ -120,11 +121,35 @@ function viewCart($user_id)
     return $result;
 }
 
-function viewRequest($user_id, $product_id)
+function viewConfirmed($user_id)
 {
     $conn = my_connectDB();
 
-    $sql = "SELECT * FROM customer_request WHERE customer_id = $user_id AND product_id = $product_id";
+    $sql = "SELECT * FROM products INNER JOIN customer_request ON products.product_id = customer_request.product_id WHERE customer_id = $user_id AND confirmed =  1";
+    $result = mysqli_query($conn, $sql);
+
+    my_closeDB($conn);
+
+    return $result;
+}
+
+//confirm items
+function confirmItem($user_id)
+{
+    $conn = my_connectDB();
+
+    $sql = "UPDATE customer_request SET confirmed = 1 where customer_id = '$user_id'";
+    $result = mysqli_query($conn, $sql);
+
+    my_closeDB($conn);
+    return $result;
+}
+
+function viewUnconfirmedRequest($user_id, $product_id)
+{
+    $conn = my_connectDB();
+
+    $sql = "SELECT * FROM customer_request WHERE customer_id = $user_id AND product_id = $product_id AND confirmed = 0";
     $result = mysqli_query($conn, $sql);
 
     my_closeDB($conn);
@@ -150,7 +175,25 @@ function checkProductinCart($user_id, $product_id)
     $conn = my_connectDB();
     $user_id = $_SESSION['user']['customer_id'];
 
-    $sql = "SELECT * FROM customer_request WHERE customer_id=$user_id AND product_id=$product_id";
+    $sql = "SELECT * FROM customer_request WHERE customer_id=$user_id AND product_id=$product_id ";
+    $result = mysqli_query($conn, $sql);
+    if ($result->num_rows > 0) {
+
+        my_closeDB($conn);
+        return 1;
+    } else {
+
+        my_closeDB($conn);
+        return 0;
+    }
+}
+
+function checkProductInButNotConfirmed($user_id, $product_id)
+{
+    $conn = my_connectDB();
+    $user_id = $_SESSION['user']['customer_id'];
+
+    $sql = "SELECT * FROM customer_request WHERE customer_id=$user_id AND product_id=$product_id AND confirmed = 0";
     $result = mysqli_query($conn, $sql);
     if ($result->num_rows > 0) {
 
@@ -169,7 +212,7 @@ function cartUpdate($product_id, $quantity)
     $conn = my_connectDB();
     $user_id = $_SESSION['user']['customer_id'];
 
-    $sql = "UPDATE customer_request SET quantity = $quantity WHERE product_id = '$product_id' AND customer_id = '$user_id'";
+    $sql = "UPDATE customer_request SET quantity = $quantity WHERE product_id = '$product_id' AND customer_id = '$user_id' AND confirmed = 0";
     $result = mysqli_query($conn, $sql);
 
     my_closeDB($conn);
@@ -187,7 +230,8 @@ function cartItemDelete($product_id)
     my_closeDB($conn);
 }
 
-function admingetUsers(){
+function admingetUsers()
+{
     $conn = my_connectDB();
 
     $sql = "SELECT * FROM customers WHERE admin = 0";
