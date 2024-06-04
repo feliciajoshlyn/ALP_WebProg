@@ -94,8 +94,8 @@ session_start();
             ?>
             <div>
                 <form class="flex flex-col justify-start items-start mt-4" method="POST" action="loginBehind.php">
-                    Username<input type="text" name="username" class="w-full outline outline-offset-1 rounded-lg mb-4" required>
-                    Password<input type="password" name="password" class="w-full outline outline-offset-1 rounded-lg">
+                    Username<input type="text" name="username" class="w-full outline outline-offset-1 rounded-lg mb-4 pl-3 pb-2 pt-2" required>
+                    Password<input type="password" name="password" class="w-full outline outline-offset-1 rounded-lg pl-3 pb-2 pt-2">
 
                     <a href="register.php" class="text-sm text-left text-blue-500 w-full mt-4 hover:underline">Register</a>
                     <div id="button" class="flex justify-center items-center w-4/5 mx-auto rounded-lg mt-4 py-1 transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-blue-700">
