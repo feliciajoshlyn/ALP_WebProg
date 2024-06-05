@@ -87,15 +87,15 @@
             <div>
                 <form class="flex flex-col justify-start items-start mt-4" method="POST" action="registerBehind.php">
                     Username<input type="text" name="username"
-                        class="w-full outline outline-offset-1 rounded-lg mb-4 pl-3 pb-2 pt-2">
+                        class="w-full outline outline-offset-1 rounded-lg mb-4 pl-2 pb-1 pt-1">
                     Email<input type="email" name="email"
-                        class="w-full outline outline-offset-1 rounded-lg mb-4 pl-3 pb-2 pt-2">
+                        class="w-full outline outline-offset-1 rounded-lg mb-4 pl-2 pb-1 pt-1">
                     Password<input type="password" name="password"
-                        class="w-full outline outline-offset-1 rounded-lg mb-4 pl-3 pb-2 pt-2">
+                        class="w-full outline outline-offset-1 rounded-lg mb-4 pl-2 pb-1 pt-1">
                     Phone Number<input type="number" name="telephone_num" id="telephone_num" placeholder="123-456-7890"
-                        required class="w-full outline outline-offset-1 rounded-lg mb-4 pl-3 pb-2 pt-2">
+                        required class="w-full outline outline-offset-1 rounded-lg mb-4 pl-2 pb-1 pt-1">
                     Address<input type="text" name="address"
-                        class="w-full outline outline-offset-1 rounded-lg pl-3 pb-2 pt-2">
+                        class="w-full outline outline-offset-1 rounded-lg pl-2 pb-1 pt-1">
 
                     <a href="login.php" class="text-sm text-left text-blue-500 w-full mt-4 hover:underline">Sign in</a>
                     <div id="button"

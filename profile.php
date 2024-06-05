@@ -152,7 +152,7 @@ include('controller.php');
                         <label for="address" class="block text-lg font-medium">Address:</label>
                         <p class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"><?= $_SESSION['user']['address'] ?></p>
                     </div>
-                    <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 justify-end mt-10 mx-4 md:mx-0">
+                    <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 justify-end mt-10 mx-4 md:mx-0 mb-5">
                     <button type="button" onclick="location.href='editProfile.php'" class="px-4 py-2 bg-blue-500 text-white hover:text-blue-400 border border-blue-300 hover:bg-white rounded-lg cursor-pointer">Edit Account</button>
                     </div>
                 </form>

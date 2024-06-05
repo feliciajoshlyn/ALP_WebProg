@@ -149,7 +149,7 @@ include('controller.php');
     </div>
     <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
         <div class="w-full text-center md:text-left">
-            <button class="back-button" onclick="history.back()">
+            <button class="back-button" onclick="window.location.href='viewItems.php'">
                 <ion-icon name="arrow-back-outline"></ion-icon>
             </button>
             <!-- <p class="text-3xl font-bold m-3 mt-[-20px] mb-4 md:ml-16">Item Details</p> -->
@@ -166,8 +166,8 @@ include('controller.php');
                 <div>
                     <img src="<?= $data['photo'] ?>" class="w-full">
                 </div>
-                <div class="mx-2 md:mx-3 flex flex-col grow">
-                    <p class="text-lg md:text-3xl font-bold text-left"><?= $data['name'] ?></p>
+                <div class="mx-2 md:mx-3 flex flex-col grow m-6">
+                    <p class="text-lg md:text-3xl font-bold text-left mt-4"><?= $data['name'] ?></p>
                     <hr>
                     <p class="text-xl my-2 font-bold">Rp <?= $data['price'] ?></p>
                     <p class="text-sm mb-1 md:ml-0">Description: <br class="md:hidden"> "<?= $data['description'] ?>"</p>

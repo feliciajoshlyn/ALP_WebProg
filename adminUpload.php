@@ -133,12 +133,12 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
             <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
                 <div class="grid">
                     <form method="POST" action="uploadItemBehind.php" enctype="multipart/form-data" class="m-4">
-                        Product Name: <br><input type="text" name="product_name" class="w-full md:w-full border mb-2"><br>
-                        Description: <br><input type="text" name="product_description" class="w-full md:w-full border mb-2"><br>
+                        Product Name: <br><input type="text" name="product_name" class="w-full md:w-full border mb-2 pl-2 pb-1 pt-1"><br>
+                        Description: <br><input type="text" name="product_description" class="w-full md:w-full border mb-2 pl-2 pb-1 pt-1"><br>
                         Photo: <br><input type="file" name="image" id="image" required><br>
-                        Price: <br><input type="number" name="price" class="w-full md:w-full border mb-2"><br>
-                        Category: <br><input type="text" name="category" class="w-full md:w-full border mb-2"><br>
-                        Country : <br><input type="text" name="country" class="w-full md:w-full border mb-2"><br>
+                        Price: <br><input type="number" name="price" class="w-full md:w-full border mb-2 pl-2 pb-1 pt-1"><br>
+                        Category: <br><input type="text" name="category" class="w-full md:w-full border mb-2 pl-2 pb-1 pt-1"><br>
+                        Country : <br><input type="text" name="country" class="w-full md:w-full border mb-2 pl-2 pb-1 pt-1"><br>
                         <input type="submit" name="submit" class="m-2 mx-auto block w-1/2 md:w-full bg-blue-500 text-white font-bold py-2 px-4 rounded">
                     </form>
                 </div>

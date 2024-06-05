@@ -119,6 +119,17 @@ function deleteItem($product_id)
     my_closeDB($conn);
 }
 
+//update item
+function updateItem($product_id, $name, $desc, $img, $price, $category, $country)
+{
+    $conn = my_connectDB();
+
+    $sql = "UPDATE products SET name = '$name' , description = '$desc', photo = '$img', price = '$price', category='$category', country ='$country'  WHERE product_id='$product_id'";
+    $result = mysqli_query($conn, $sql);
+
+    my_closeDB($conn);
+}
+
 //Customers view carts
 function viewCart($user_id)
 {
