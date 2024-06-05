@@ -209,6 +209,7 @@ include ('controller.php');
                                 <img src="<?= $data['photo'] ?>" class="object-contain max-h-full max-w-full">
                             </div>
                             <div class="text-center mt-4">
+                                <p class="text-sm font-bold">Rp <?= $data['price']?></p>
                                 <p class="text-sm">Country: <?= $data['country'] ?></p>
                                 <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>"
                                     class="text-xs text-blue-300 hover:underline">View Details</a>
