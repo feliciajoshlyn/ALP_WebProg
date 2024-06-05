@@ -113,7 +113,7 @@ include ('controller.php');
                 <?php if (isset($_SESSION['user'])) {
                     if ($_SESSION['user']['admin'] == 0) {
                         ?>
-                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php"
+                        <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="cart.php"
                                 class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
                         <?php
                     } else {
