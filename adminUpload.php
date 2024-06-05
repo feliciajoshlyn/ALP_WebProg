@@ -143,7 +143,8 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
                     </form>
                 </div>
             </div>
-            <footer
+            
+        </div><footer
             class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center">
             <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
                 <h3 class="font-bold text-lg mb-2">Navigation</h3>
@@ -163,7 +164,6 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['admin'] == 0) {
                 <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
             </div>
         </footer>
-        </div>
     <?php
 }
     ?>

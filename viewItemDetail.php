@@ -20,6 +20,9 @@ include('controller.php');
     <style>
         body {
             font-family: 'poppins';
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         #navbar {
@@ -46,7 +49,6 @@ include('controller.php');
             object-fit: cover;
         }
 
-
         .quantity-control {
             display: flex;
             align-items: center;
@@ -57,7 +59,6 @@ include('controller.php');
             padding: 5px;
             cursor: pointer;
         }
-
 
         .quantity-input {
             width: 30px;
@@ -78,6 +79,10 @@ include('controller.php');
 
         .back-button:hover ion-icon {
             color: #3b4a8b;
+        }
+
+        main {
+            flex: 1;
         }
     </style>
 </head>
@@ -147,83 +152,82 @@ include('controller.php');
             </ul>
         </nav>
     </div>
-    <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
-        <div class="w-full text-center md:text-left">
-            <button class="back-button" onclick="window.location.href='viewItems.php'">
-                <ion-icon name="arrow-back-outline"></ion-icon>
-            </button>
-            <!-- <p class="text-3xl font-bold m-3 mt-[-20px] mb-4 md:ml-16">Item Details</p> -->
-        </div>
+    <main class="flex-grow">
+        <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
+            <div class="w-full text-center md:text-left">
+                <button class="back-button" onclick="window.location.href='viewItems.php'">
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                </button>
+            </div>
 
+            <?php
+            $product_id = $_GET['product_id'];
+            $result = getItemDetails($product_id);
+            $data = $result->fetch_assoc();
+            ?>
+            <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
+                <div class="md:flex grow md:m-5 md:mb-2 w-full">
+                    <div>
+                        <img src="<?= $data['photo'] ?>" class="w-full">
+                    </div>
+                    <div class="mx-2 md:mx-3 flex flex-col grow m-6">
+                        <p class="text-lg md:text-3xl font-bold text-left mt-4"><?= $data['name'] ?></p>
+                        <hr>
+                        <p class="text-xl my-2 font-bold">Rp <?= $data['price'] ?></p>
+                        <p class="text-sm mb-1 md:ml-0">Description: <br class="md:hidden"> "<?= $data['description'] ?>"</p>
+                        <p class="text-sm mb-1">Category: <?= $data['category'] ?></p>
+                        <p class="text-sm">Country: <?= $data['country'] ?></p>
 
-        <?php
-        $product_id = $_GET['product_id'];
-        $result = getItemDetails($product_id);
-        $data = $result->fetch_assoc();
-        ?>
-        <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
-            <div class="md:flex grow md:m-5 md:mb-2 w-full">
-                <div>
-                    <img src="<?= $data['photo'] ?>" class="w-full">
-                </div>
-                <div class="mx-2 md:mx-3 flex flex-col grow m-6">
-                    <p class="text-lg md:text-3xl font-bold text-left mt-4"><?= $data['name'] ?></p>
-                    <hr>
-                    <p class="text-xl my-2 font-bold">Rp <?= $data['price'] ?></p>
-                    <p class="text-sm mb-1 md:ml-0">Description: <br class="md:hidden"> "<?= $data['description'] ?>"</p>
-                    <p class="text-sm mb-1">Category: <?= $data['category'] ?></p>
-                    <p class="text-sm">Country: <?= $data['country'] ?></p>
+                        <?php
 
-                    <?php
+                        if (isset($_SESSION['user']) && $_SESSION['user']['admin'] == 0) {
+                            // initializer of the $data['quantity'] variable
+                            $data['quantity'] = 1;
 
-                    if (isset($_SESSION['user']) && $_SESSION['user']['admin'] == 0) {
-                        // initializer of the $data['quantity'] variable
-                        $data['quantity'] = 1;
-
-                        // checks if it exists
-                        if (checkProductInButNotConfirmed($_SESSION['user']['customer_id'], $data['product_id']) == 1) {
-                            // grabs the data and sets it to $data['quantity']
-                            $request = viewUnconfirmedRequest($_SESSION['user']['customer_id'], $data['product_id']);
-                            $data['quantity'] = $request->fetch_assoc()['quantity'];
-                        }
-                    ?>
-                        <!-- quantity button -->
-                        <form method="POST" action="addToCart.php">
-                            <input type="hidden" name="product_id" id="product_id" value="<?= $data['product_id'] ?>">
-                            <div class="quantity-control float-right mt-1 mr-3">
-                                <button class="minus-btn border border-gray-400 rounded-l-md px-2 py-1 bg-">-</button>
-                                <input type="text" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
-                                <button class="plus-btn border border-gray-400 rounded-r-md px-2 py-1">+</button>
-                            </div>
-                            <p class="text-sm pt-3">Quantity: </p>
+                            // checks if it exists
+                            if (checkProductInButNotConfirmed($_SESSION['user']['customer_id'], $data['product_id']) == 1) {
+                                // grabs the data and sets it to $data['quantity']
+                                $request = viewUnconfirmedRequest($_SESSION['user']['customer_id'], $data['product_id']);
+                                $data['quantity'] = $request->fetch_assoc()['quantity'];
+                            }
+                        ?>
+                            <!-- quantity button -->
+                            <form method="POST" action="addToCart.php">
+                                <input type="hidden" name="product_id" id="product_id" value="<?= $data['product_id'] ?>">
+                                <div class="quantity-control float-right mt-1 mr-3">
+                                    <button class="minus-btn border border-gray-400 rounded-l-md px-2 py-1 bg-">-</button>
+                                    <input type="text" class="quantity-input" name="quantity" value="<?= $data['quantity'] ?>" min="1">
+                                    <button class="plus-btn border border-gray-400 rounded-r-md px-2 py-1">+</button>
+                                </div>
+                                <p class="text-sm pt-3">Quantity: </p>
+                                <?php
+                                if (checkProductInButNotConfirmed($_SESSION['user']['customer_id'], $data['product_id']) == false) {
+                                ?>
+                                    <button type="submit" name="add_to_cart" class=" border border-gray-200 rounded-md w-full mt-5 text-sm p-2">Add to Cart</button>
+                                <?php
+                                } else {
+                                ?>
+                                    <button type="submit" name="update_cart" class=" border border-gray-200 rounded-md w-full mt-5 text-sm p-2">Update Cart</button>
+                                <?php
+                                }
+                            } else if (!isset($_SESSION['user'])) {
+                                ?>
+                                <a href="login.php" class="border rounded-md p-3 bg-orange-100 font-bold">Sign in to Buy</a>
                             <?php
-                            if (checkProductInButNotConfirmed($_SESSION['user']['customer_id'], $data['product_id']) == false) {
+                            } else if ($_SESSION['user']['admin'] == 1) {
                             ?>
-                                <button type="submit" name="add_to_cart" class=" border border-gray-200 rounded-md w-full mt-5 text-sm p-2">Add to Cart</button>
-                            <?php
-                            } else {
-                            ?>
-                                <button type="submit" name="update_cart" class=" border border-gray-200 rounded-md w-full mt-5 text-sm p-2">Update Cart</button>
+                                <div class="text-right mr-5">
+                                    <a href="updateItem.php?update_id=<?= $data['product_id'] ?>" class="text-blue-400">Edit Item</a> | <a href="deleteItem.php?delete_id=<?= $data['product_id'] ?>" class="text-red-400">Delete</a>
+                                </div>
                             <?php
                             }
-                        } else if (!isset($_SESSION['user'])) {
                             ?>
-                            <a href="login.php" class="border rounded-md p-3 bg-orange-100 font-bold">Sign in to Buy</a>
-                        <?php
-                        } else if ($_SESSION['user']['admin'] == 1) {
-                        ?>
-                            <div class="text-right mr-5">
-                                <a href="updateItem.php?update_id=<?= $data['product_id'] ?>" class="text-blue-400">Edit Item</a> | <a href="deleteItem.php?delete_id=<?= $data['product_id'] ?>" class="text-red-400">Delete</a>
-                            </div>
-                        <?php
-                        }
-                        ?>
-                        </form>
+                            </form>
+                    </div>
                 </div>
             </div>
         </div>
-
-    </div>
+    </main>
     <footer class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center">
         <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
             <h3 class="font-bold text-lg mb-2">Navigation</h3>
@@ -270,8 +274,8 @@ include('controller.php');
     const plusBtn = document.querySelector('.plus-btn');
     const quantityInput = document.querySelector('.quantity-input');
 
-    minusBtn.addEventListener('click', () => {
-        event.preventDefault();
+    minusBtn.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default form submission on "-" button click
         let currentQuantity = parseInt(quantityInput.value);
         if (currentQuantity > 1) {
             quantityInput.value = currentQuantity - 1;
