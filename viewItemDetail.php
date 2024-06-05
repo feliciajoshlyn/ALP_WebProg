@@ -111,13 +111,13 @@ include('controller.php');
                     <?php
                     } else {
                     ?>
-                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="adminViewUser.php" class="font-medium hover:text-orange-200  duration-500">View Users</a></li>
+                        <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="adminViewUser.php" class="font-medium hover:text-orange-200  duration-500">View Users</a></li>
                     <?php
                     }
                     ?>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="logout.php" class="font-medium hover:text-orange-200  duration-500">Logout</a></li>
-                    <li class="mx-4 my-6 md:my-0 relative">
+                    <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
+                    <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="logout.php" class="font-medium hover:text-orange-200  duration-500">Logout</a></li>
+                    <li class="mx-4 my-6 sm:my-0 relative">
                         <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
                         <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
                             <?php
@@ -136,9 +136,9 @@ include('controller.php');
                         <?php
                     } else {
                         ?>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="login.php" class="font-medium hover:text-orange-200  duration-500">Login</a></li>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="register.php" class="font-medium hover:text-orange-200  duration-500">Register</a></li>
-                    <li class="mx-4 my-6 md:my-0 relative">
+                    <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="login.php" class="font-medium hover:text-orange-200  duration-500">Login</a></li>
+                    <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="register.php" class="font-medium hover:text-orange-200  duration-500">Register</a></li>
+                    <li class="mx-4 my-6 sm:my-0 relative">
                         <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
                         <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
                             <a href="login.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
