@@ -104,8 +104,6 @@
             </nav>
         </div>
         <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
-
-            <h1>hi <?= $_SESSION['user']['username'] ?></h1>
             <?php
                 } else {
                     ?>
@@ -124,7 +122,12 @@
             </ul>
             </nav>
         </div>
-        <div class="flex flex-col items-center mt-20 md:mt-20 md:w-full lg:w-full mx-auto p-4">
+        
+
+            <?php
+                }
+                ?>
+                <div class="flex flex-col items-center mt-20 md:mt-20 md:w-full lg:w-full mx-auto p-4">
             <div class="text-indigo-800 opacity-80">
                 <h1 class="font-bold text-center mt-20 text-xl sm:text-2xl  md:text-3xl lg:text-4xl">Your Global Shopping
                     Assistant - TitipinAja.com</h1>
@@ -205,10 +208,7 @@
                 </div>
 
             </div>
-
-            <?php
-                }
-                ?>
+            </div>
     </div>
     <footer
         class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center r">
@@ -233,7 +233,7 @@
             <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
         </div>
     </footer>
-    </div>
+    
 </body>
 <script>
     tailwind.config = {
