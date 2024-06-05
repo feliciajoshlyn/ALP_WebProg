@@ -169,25 +169,48 @@ include('controller.php');
             }
             ?>
             <!-- div for product -->
-            <div>
+            <div class="w-[90%] lg:w-[80%] mx-auto grow p-2 md:p-4 md:flex  md:space-x-10">
                 <?php
 
                 while ($data = $result->fetch_assoc()) {
                 ?>
-                    <p>Product Name: <?= $data['name'] ?></p><br>
-                    <!-- <p>Description: <?= $data['description'] ?></p><br> -->
-                    <img src="<?= $data['photo'] ?>" style="width:200px"><br>
-                    <!-- <p>Price: <?= $data['price'] ?></p> -->
-                    <!-- <p>Category: <?= $data['category'] ?></p> -->
-                    <p>Country: <?= $data['country'] ?></p>
-                    <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>" class="text-blue-300">View Details</a>
-
+                    <div class="bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg mb-2">
+                        <div class="grid ">
+                        <p class="text-center font-bold mb-1 w-full overflow-hidden text-ellipsis whitespace-nowrap"><?= $data['name'] ?></p>
+                        <!-- <p>Description: <?= $data['description'] ?></p><br> -->
+                        <img src="<?= $data['photo'] ?>" style="width:200px" class="mx-auto">
+                        <!-- <p>Price: <?= $data['price'] ?></p> -->
+                        <!-- <p>Category: <?= $data['category'] ?></p> -->
+                        <p class="text-sm">Country: <?= $data['country'] ?></p>
+                        <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>" class="text-xs text-blue-300 hover:underline ">View Details</a>
+                    </div>
+                </div>
                 <?php
                 }
                 my_closeDB($conn);
                 ?>
             </div>
         </div>
+        <footer
+            class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center">
+            <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
+                <h3 class="font-bold text-lg mb-2">Navigation</h3>
+                <div class="font-normal space-y-1 text-center sm:text-left">
+                    <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
+                    <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
+                <h3 class="font-bold text-lg mb-2">Contact</h3>
+                <div class="font-normal space-y-1 text-center sm:text-left">
+                    <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
+                    <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+                </div>
+            </div>
+            <div class="w-full flex justify-center">
+                <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
+            </div>
+        </footer>
     </div>
 </body>
 <script>
