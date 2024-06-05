@@ -138,7 +138,7 @@ include ("controller.php");
 
             <div
                 class="w-[90%] md:w-[70%] lg:w-[75%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
-                <form method="POST" action="updateItemBehind.php" class="">
+                <form method="POST" action="updateItemBehind.php" enctype="multipart/form-data" class="">
                     <?php
 
                     ?>
@@ -157,7 +157,7 @@ include ("controller.php");
                     <div class="my-4 mx-4">
                         <label for="image" class="block text-lg font-medium">Photo:</label>
                         <input type="file" value="<?= $productRow['photo'] ?>" id="image" name="image"
-                            class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" required>
+                            class="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
                     </div>
                     <div class="my-4 mx-4">
                         <label for="price" class="block text-lg font-medium">Price:</label>

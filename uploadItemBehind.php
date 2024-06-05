@@ -16,5 +16,4 @@
     include('controller.php');
     uploadItems($product_name, $description, $target_file, $price, $category, $country);
     header("Location: viewItems.php")
-    // atau ke item details ya..?
     ?>
