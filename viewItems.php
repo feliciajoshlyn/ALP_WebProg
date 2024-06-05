@@ -180,8 +180,8 @@ include ('controller.php');
             if (isset($_SESSION['user'])) {
                 if ($_SESSION['user']['admin'] == 1) {
             ?>
-                    <div class="w-full text-left">
-                        <a href="adminUpload.php" class="text-left">Add Item</a>
+                    <div class="w-[90%] lg:w-[80%] mx-auto mb-2 flex justify-end">
+                        <button onclick="location.href='adminUpload.php'" class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mr-2">Add Item</button>
                     </div>
             <?php
                 }
