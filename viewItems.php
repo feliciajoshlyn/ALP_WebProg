@@ -202,7 +202,7 @@ include ('controller.php');
                                     <?= $data['name'] ?></p>
                             </div>
                             <div class="flex justify-center items-center" style="height: 200px;">
-                                <img src="<?= $data['photo'] ?>" class="object-contain max-h-full max-w-full">
+                                <img src="<?= $data['photo'] ?>" class="object-contain max-h-full max-w-full w">
                             </div>
                             <div class="text-center mt-4">
                                 <p class="text-sm font-bold">Rp <?= $data['price']?></p>
