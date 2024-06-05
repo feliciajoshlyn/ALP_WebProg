@@ -166,7 +166,7 @@ include ('controller.php');
                         </button>
                     </div>
                     <div class="flex-grow">
-                        <p class="text-3xl font-bold m-3 mb-4">View Items</p>
+                        <p class="text-3xl font-bold m-3 mb-4 md:ml-16">View Items</p>
                     </div>
                 </div>
 
@@ -187,7 +187,7 @@ include ('controller.php');
                         ?>
                         <div class="w-[90%] lg:w-[80%] mx-auto mb-2 flex justify-end">
                             <button onclick="location.href='adminUpload.php'"
-                                class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mr-2">Add
+                                class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mx-2 w-full md:w-36">Add
                                 Item</button>
                         </div>
                         <?php
