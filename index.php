@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -42,7 +44,8 @@
 
 <body class="bg-yellow-50 background-size:contain">
     <div>
-        <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
+        <nav id="navbar"
+            class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
             <div class="flex justify-between items-center">
                 <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
                 <span class="text-xl cursor-pointer font-semibold">
@@ -53,90 +56,105 @@
                 </span>
             </div>
 
-            <ul id="slide" class="bg-red-800 sm:flex sm:items-center z-50 sm:z-auto sm:static absolute w-full left-0 sm:w-auto sm:py-0 py-4 sm:pl-0 pl-7 sm:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
-                <li class="mx-4 my-6 md:my-0"><a href="index.php" class="font-medium hover:text-orange-200  duration-500">Home</a></li>
-                <li class="mx-4 my-6 md:my-0"><a href="viewItems.php" class="font-medium hover:text-orange-200  duration-500">Products</a></li>
+            <ul id="slide"
+                class="bg-red-800 sm:flex sm:items-center z-50 sm:z-auto sm:static absolute w-full left-0 sm:w-auto sm:py-0 py-4 sm:pl-0 pl-7 sm:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
+                <li class="mx-4 my-6 md:my-0"><a href="index.php"
+                        class="font-medium hover:text-orange-200  duration-500">Home</a></li>
+                <li class="mx-4 my-6 md:my-0"><a href="viewItems.php"
+                        class="font-medium hover:text-orange-200  duration-500">Products</a></li>
 
                 <?php if (isset($_SESSION['user'])) {
                     if ($_SESSION['user']['admin'] == 0) {
-                ?>
-                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php" class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
-                    <?php
+                        ?>
+                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php"
+                                class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
+                        <?php
                     } else {
-                    ?>
-                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="adminViewUser.php" class="font-medium hover:text-orange-200  duration-500">View Users</a></li>
-                    <?php
+                        ?>
+                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="adminViewUser.php"
+                                class="font-medium hover:text-orange-200  duration-500">View Users</a></li>
+                        <?php
                     }
                     ?>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php" class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="logout.php" class="font-medium hover:text-orange-200  duration-500">Logout</a></li>
+                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php"
+                            class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
+                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="logout.php"
+                            class="font-medium hover:text-orange-200  duration-500">Logout</a></li>
                     <li class="mx-4 my-6 md:my-0 relative">
-                        <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
+                        <img src="path/to/profile-pic.jpg" alt="Profile"
+                            class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
                         <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
                             <?php
                             if ($_SESSION['user']['admin'] == 0) {
-                            ?>
+                                ?>
                                 <a href="cart.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Cart</a>
-                            <?php
+                                <?php
                             } else {
-                            ?>
-                                <a href="adminViewUser.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View Users</a>
-                            <?php
+                                ?>
+                                <a href="adminViewUser.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">View
+                                    Users</a>
+                                <?php
                             }
                             ?>
                             <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
                             <a href="logout.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
                         </div>
                     </li>
-            </ul>
-        </nav>
-    </div>
-    <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
+                </ul>
+            </nav>
+        </div>
+        <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
 
-        <h1>hi <?= $_SESSION['user']['username'] ?></h1>
-    <?php
+            <h1>hi <?= $_SESSION['user']['username'] ?></h1>
+            <?php
                 } else {
-    ?>
-        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="login.php" class="font-medium hover:text-orange-200  duration-500">Login</a></li>
-        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="register.php" class="font-medium hover:text-orange-200  duration-500">Register</a></li>
-        <li class="mx-4 my-6 md:my-0 relative">
-            <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
-            <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
-                <a href="login.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
-                <a href="register.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Register</a>
-            </div>
-        </li>
-        </ul>
-        </nav>
-    </div>
-    <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
+                    ?>
+            <li class="mx-4 my-6 md:my-0 md:hidden"><a href="login.php"
+                    class="font-medium hover:text-orange-200  duration-500">Login</a></li>
+            <li class="mx-4 my-6 md:my-0 md:hidden"><a href="register.php"
+                    class="font-medium hover:text-orange-200  duration-500">Register</a></li>
+            <li class="mx-4 my-6 md:my-0 relative">
+                <img src="path/to/profile-pic.jpg" alt="Profile"
+                    class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
+                <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
+                    <a href="login.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
+                    <a href="register.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Register</a>
+                </div>
+            </li>
+            </ul>
+            </nav>
+        </div>
+        <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
 
-        <h1>hi guest</h1>
-    <?php
+            <h1>hi guest</h1>
+            <?php
 
                 }
-    ?>
+                ?>
     </div>
     <footer
-            class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center">
-            <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
-                <h3 class="font-bold text-lg mb-2">Navigation</h3>
-                <div class="font-normal space-y-1 text-center sm:text-left">
-                    <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
-                    <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+        class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center r">
+        <div class="w-full md:w-1/2 flex flex-col justify-center items-center mb-4 md:mb-0">
+            <h3 class="font-bold text-lg mb-2">Navigation</h3>
+            <div class="font-normal space-y-1 text-center text-center md:text-left">
+                <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
+                <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 flex flex-col items-center md:items-start mb-4 md:mb-0">
+            <h3 class="font-bold text-lg mb-2">Contact</h3>
+            <div class="font-normal space-y-1 text-center md:text-left">
+                <div>
+                    <p class="text-sm">Address: Ciputra Univeristy, Surabaya</p>
+                    <p class="text-sm">Phone: 081-34869995</p>
+                    <p class="text-sm">Email: info@titipinaja.com</p>
                 </div>
             </div>
-            <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
-                <h3 class="font-bold text-lg mb-2">Contact</h3>
-                <div class="font-normal space-y-1 text-center sm:text-left">
-                    <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
-                    <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
-                </div>
-            </div>
-            <div class="w-full flex justify-center">
-                <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
-            </div>
-        </footer>
+        </div>
+        <div class="w-full flex justify-center">
+            <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
+        </div>
+    </footer>
     </div>
 </body>
 <script>
@@ -152,7 +170,7 @@
     }
 
     //tutup dropdown
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         let dropdown = document.getElementById('dropdown');
         let profilePic = dropdown.previousElementSibling;
         if (!dropdown.contains(event.target) && !profilePic.contains(event.target)) {

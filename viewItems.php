@@ -155,92 +155,99 @@ include ('controller.php');
             </ul>
         </nav>
         <div class="flex flex-col items-center mt-16 md:mt-28 md:items-start md:w-full lg:w-full mx-auto p-4">
-            <div class="w-full text-center md:text-left">
-                <button class="back-button text-left md:hidden" onclick="history.back()">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                </button>
-                <p class="text-3xl font-bold m-3 md:mt-[-20px] mb-4 md:ml-16 ">View Items</p>
+            <div class="flex items-center w-full justify-between text-center md:text-left">
+                <div class="flex items-left">
+                    <button class="back-button text-left md:hidden" onclick="history.back()">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </button>
+                </div>
+                <div class="flex-grow">
+                    <p class="text-3xl font-bold m-3 mb-4">View Items</p>
+                </div>
             </div>
+
             <?php
-                $conn = my_connectDB();
+            $conn = my_connectDB();
 
-                $sql = "";
-                if (isset($_GET['country'])) {
-                    $sql = "SELECT * FROM products WHERE country =" . $_GET['country'];
-                } else {
-                    $sql = "SELECT * FROM products";
-                }
-                $result = mysqli_query($conn, $sql);
+            $sql = "";
+            if (isset($_GET['country'])) {
+                $sql = "SELECT * FROM products WHERE country =" . $_GET['country'];
+            } else {
+                $sql = "SELECT * FROM products";
+            }
+            $result = mysqli_query($conn, $sql);
 
-                //if admin
-                
-                if (isset($_SESSION['user'])) {
-                    if ($_SESSION['user']['admin'] == 1) {
-                        ?>
-                        <div class="text-right mb-4">
-                            <a href="adminUpload.php" class="bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">+ Add
-                                Item</a>
-                        </div>
-                        <?php
-                    }
-                }
-                ?>
-                <!-- div for product -->
-                <div class="w-[90%] lg:w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <?php
-
-                    while ($data = $result->fetch_assoc()) {
-                        ?>
-                        <div class="bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg mb-2">
-                            <div class="grid m-5">
-                                <p
-                                    class="text-center font-bold mb-1 w-full overflow-hidden text-ellipsis whitespace-nowrap">
-                                    <?= $data['name'] ?>
-                                </p>
-
-                                <div style=" height:200px" class=" flex justify-center">
-                                    <img src="<?= $data['photo'] ?>" style="width:200px" class="mx-auto">
-                                </div>
-
-                                <div class="mt-5 ml-10 sm:ml-15 md:ml-5 lg:ml-2">
-                                    <p>Description: <?= $data['description'] ?></p>
-                                    <p>Price: <?= $data['price'] ?></p>
-                                    <p>Category: <?= $data['category'] ?></p>
-                                    <p>Country: <?= $data['country'] ?></p>
-                                    <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>"
-                                        class="text-xs text-blue-300 hover:underline ">View Details</a>
-                                </div>
-
-                            </div>
-                        </div>
-                        <?php
-                    }
-                    my_closeDB($conn);
+            //if admin
+            
+            if (isset($_SESSION['user'])) {
+                if ($_SESSION['user']['admin'] == 1) {
                     ?>
-                </div>
-            </div>
-            </div>
-            <footer
-                class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center">
-                <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
-                    <h3 class="font-bold text-lg mb-2">Navigation</h3>
-                    <div class="font-normal space-y-1 text-center sm:text-left">
-                        <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
-                        <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+                    <div class="text-right mb-4">
+                        <a href="adminUpload.php" class="bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">+ Add
+                            Item</a>
                     </div>
-                </div>
-                <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
-                    <h3 class="font-bold text-lg mb-2">Contact</h3>
-                    <div class="font-normal space-y-1 text-center sm:text-left">
-                        <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
-                        <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+                    <?php
+                }
+            }
+            ?>
+            <!-- div for product -->
+            <div class="w-[90%] lg:w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <?php
+
+                while ($data = $result->fetch_assoc()) {
+                    ?>
+                    <div class="bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg mb-2">
+                        <div class="grid m-5">
+                            <p class="text-center font-bold mb-1 w-full overflow-hidden text-ellipsis whitespace-nowrap">
+                                <?= $data['name'] ?>
+                            </p>
+
+                            <div style=" height:200px" class=" flex justify-center">
+                                <img src="<?= $data['photo'] ?>" style="width:200px" class="mx-auto">
+                            </div>
+
+                            <div class="mt-5 ml-10 sm:ml-15 md:ml-5 lg:ml-2">
+                                <p>Description: <?= $data['description'] ?></p>
+                                <p>Price: <?= $data['price'] ?></p>
+                                <p>Category: <?= $data['category'] ?></p>
+                                <p>Country: <?= $data['country'] ?></p>
+                                <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>"
+                                    class="text-xs text-blue-300 hover:underline ">View Details</a>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-                <div class="w-full flex justify-center">
-                    <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
-                </div>
-            </footer>
+                    <?php
+                }
+                my_closeDB($conn);
+                ?>
+            </div>
         </div>
+    </div>
+    <footer class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center r">
+        <div class="w-full md:w-1/2 flex flex-col justify-center items-center mb-4 md:mb-0">
+            <h3 class="font-bold text-lg mb-2">Navigation</h3>
+            <div class="font-normal space-y-1 text-center text-center md:text-left">
+                <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
+                <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 flex flex-col items-center md:items-start mb-4 md:mb-0">
+            <h3 class="font-bold text-lg mb-2">Contact</h3>
+            <div class="font-normal space-y-1 text-center md:text-left">
+                <div>
+                    <p class="text-sm">Address: Ciputra Univeristy, Surabaya</p>
+                    <p class="text-sm">Phone: 081-34869995</p>
+                    <p class="text-sm">Email: info@titipinaja.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-full flex justify-center">
+            <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
+        </div>
+    </footer>
+
+    </div>
 </body>
 <script>
     function menu(e) {

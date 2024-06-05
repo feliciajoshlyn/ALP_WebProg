@@ -114,7 +114,7 @@ function deleteItem($product_id)
     $conn = my_connectDB();
 
     $sql = "DELETE FROM products WHERE product_id = '$product_id'";
-    $result = mysqli_query($conn, $sql) or die();
+    $result = mysqli_query($conn, $sql);
 
     my_closeDB($conn);
 }
