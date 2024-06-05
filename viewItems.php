@@ -210,8 +210,9 @@ include ('controller.php');
                 ?>
             </div>
         </div>
-        <footer
-            class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center">
+        
+    </div><footer
+            class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center mt-24">
             <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
                 <h3 class="font-bold text-lg mb-2">Navigation</h3>
                 <div class="font-normal space-y-1 text-center sm:text-left">
@@ -230,7 +231,6 @@ include ('controller.php');
                 <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
             </div>
         </footer>
-    </div>
 </body>
 <script>
     function menu(e) {
