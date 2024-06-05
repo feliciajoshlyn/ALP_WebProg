@@ -1,8 +1,8 @@
+<!DOCTYPE html>
 <?php
 session_start();
-include ('controller.php');
+include('controller.php')
 ?>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,7 +21,7 @@ include ('controller.php');
     <title>ItemDetail</title>
     <style>
         body {
-            font-family: 'poppins';
+            font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -43,12 +43,6 @@ include ('controller.php');
 
         #dropdown a {
             transition: background-color 0.2s;
-        }
-
-        img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
         }
 
         .quantity-control {
@@ -182,8 +176,8 @@ include ('controller.php');
             ?>
             <div class="w-[70%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-5 md:p-4 shadow-lg">
                 <div class="md:flex grow md:m-5 md:mb-2 w-full">
-                    <div>
-                        <img src="<?= $data['photo'] ?>" class="w-full">
+                    <div class="md:w-1/4">
+                        <img src="<?= $data['photo'] ?>" class="w-[100%] max-w-full h-auto rounded-lg shadow-md">
                     </div>
                     <div class="mx-2 md:mx-3 flex flex-col grow m-6">
                         <p class="text-lg md:text-3xl font-bold text-left mt-4"><?= $data['name'] ?></p>
@@ -261,7 +255,7 @@ include ('controller.php');
             <h3 class="font-bold text-lg mb-2">Contact</h3>
             <div class="font-normal space-y-1 text-center md:text-left">
                 <div>
-                    <p class="text-sm">Address: Ciputra Univeristy, Surabaya</p>
+                    <p class="text-sm">Address: Ciputra University, Surabaya</p>
                     <p class="text-sm">Phone: 081-34869995</p>
                     <p class="text-sm">Email: info@titipinaja.com</p>
                 </div>
