@@ -174,23 +174,20 @@ include ('controller.php')
             $result = getItemDetails($product_id);
             $data = $result->fetch_assoc();
             ?>
-            <div
-                class="w-[70%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-5 pb-0 md:p-4 shadow-lg">
-                <div class="md:flex grow md:m-5 md:mb-2 w-full">
-                    <div class="md:w-[100%]">
-                        <img src="<?= $data['photo'] ?>" class="w-[100%] max-w-full h-auto rounded-lg shadow-md">
+            <div class="w-[70%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-5 pb-0 md:p-4 shadow-lg">
+                <div class="lg:flex grow lg:m-5 md:mb-2 w-full">
+                    <div class="lg:w-1/3 flex justify-center items-center">
+                        <img src="<?= $data['photo'] ?>" class="w-full h-full max-w-[300px] max-h-[300px] object-cover rounded-lg shadow-md">
                     </div>
                     <div class="mx-2 md:mx-3 flex flex-col grow m-6">
                         <p class="text-lg md:text-3xl font-bold text-left mt-4"><?= $data['name'] ?></p>
                         <hr>
                         <p class="text-xl my-2 font-bold">Rp <?= $data['price'] ?></p>
-                        <p class="text-sm mb-1 md:ml-0">Description: <br class="md:hidden">
-                            "<?= $data['description'] ?>"</p>
+                        <p class="text-sm mb-1 md:ml-0">Description: <br class="md:hidden">"<?= $data['description'] ?>"</p>
                         <p class="text-sm mb-1">Category: <?= $data['category'] ?></p>
                         <p class="text-sm">Country: <?= $data['country'] ?></p>
 
                         <?php
-
                         if (isset($_SESSION['user']) && $_SESSION['user']['admin'] == 0) {
                             // initializer of the $data['quantity'] variable
                             $data['quantity'] = 1;
@@ -226,13 +223,14 @@ include ('controller.php')
                                 }
                         } else if (!isset($_SESSION['user'])) {
                             ?>
-                                    <div class="flex md:justify-end md:w-[95%]">
-                                        <a href="login.php"
-                                            class="border rounded-md p-3 bg-blue-500 font-bold text-white mt-3 md:mt-10 w-full md:w-[18%] text-center">Sign
-                                            in to Buy</a>
-                                    </div>
-                                <?php
-                        } else if ($_SESSION['user']['admin'] == 1) {
+                                <div class="text-right lg:mr-5 mt-10 lg:mt-24">
+                                    <a href="updateItem.php?update_id=<?= $data['product_id'] ?>" class="text-blue-400">Edit Item</a>
+                                    <span class="inline"> | </span>
+                                    <a href="deleteItem.php?delete_id=<?= $data['product_id'] ?>" class="text-red-400">Delete</a>
+                                </div>
+
+                            <?php
+                            }
                             ?>
                                         <div class="text-right mr-5 mt-10 md:mt-20">
                                             <a href="updateItem.php?update_id=<?= $data['product_id'] ?>" class="text-blue-400">Edit
@@ -245,6 +243,7 @@ include ('controller.php')
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
     </main>
