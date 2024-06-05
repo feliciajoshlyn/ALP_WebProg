@@ -57,17 +57,17 @@
 
             <ul id="slide"
                 class="bg-red-800 sm:flex sm:items-center z-50 sm:z-auto sm:static absolute w-full left-0 sm:w-auto sm:py-0 py-4 sm:pl-0 pl-7 sm:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
-                <li class="mx-4 my-6 md:my-0"><a href="index.php"
+                <li class="mx-4 my-6 sm:my-0"><a href="index.php"
                         class="font-medium hover:text-orange-200 duration-500 ">Home</a></li>
-                <li class="mx-4 my-6 md:my-0"><a href="viewItems.php"
+                <li class="mx-4 my-6 sm:my-0"><a href="viewItems.php"
                         class="font-medium hover:text-orange-200  duration-500">Products</a></li>
-                <li class="mx-4 my-6 md:my-0 md:hidden"><a href="login.php"
+                <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="login.php"
                         class="font-medium hover:text-orange-200  duration-500">Login</a></li>
-                <li class="mx-4 my-6 md:my-0 md:hidden"><a href="register.php"
+                <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="register.php"
                         class="font-medium hover:text-orange-200  duration-500">Register</a></li>
-                <li class="mx-4 my-6 md:my-0 relative">
+                <li class="mx-4 my-6 sm:my-0 relative">
                     <img src="path/to/profile-pic.jpg" alt="Profile"
-                        class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
+                        class="w-10 h-10 hidden sm:block rounded-full cursor-pointer" onclick="toggleDropdown()">
                     <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
                         <a href="login.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
                         <a href="register.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Register</a>

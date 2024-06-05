@@ -83,23 +83,23 @@ include ('controller.php');
                 <?php if (isset($_SESSION['user'])) {
                     if ($_SESSION['user']['admin'] == 0) {
                         ?>
-                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php"
+                        <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="cart.php"
                                 class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
                         <?php
                     } else {
                         ?>
-                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="adminViewUser.php"
+                        <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="adminViewUser.php"
                                 class="font-medium hover:text-orange-200  duration-500">View Users</a></li>
                         <?php
                     }
                     ?>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="profile.php"
+                    <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="profile.php"
                             class="font-medium hover:text-orange-200  duration-500">Profile</a></li>
-                    <li class="mx-4 my-6 md:my-0 md:hidden"><a href="logout.php"
+                    <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="logout.php"
                             class="font-medium hover:text-orange-200  duration-500">Logout</a></li>
-                    <li class="mx-4 my-6 md:my-0 relative">
+                    <li class="mx-4 my-6 sm:my-0 relative">
                         <img src="path/to/profile-pic.jpg" alt="Profile"
-                            class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
+                            class="w-10 h-10 hidden sm:block rounded-full cursor-pointer" onclick="toggleDropdown()">
                         <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
                             <?php
                             if ($_SESSION['user']['admin'] == 0) {
