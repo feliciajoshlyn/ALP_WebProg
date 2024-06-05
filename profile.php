@@ -138,10 +138,7 @@ include ('controller.php');
         </nav>
 
         <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
-            <div class="w-full text-center md:text-left">
-                <button class="back-button" onclick="history.back()">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                </button>
+            <div class="w-full text-center">
                 <p class="text-3xl font-bold m-3 mb-4 md:ml-16">Profile</p>
             </div>
             <div

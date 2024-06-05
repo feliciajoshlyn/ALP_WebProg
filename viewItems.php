@@ -159,12 +159,8 @@ include ('controller.php');
         </nav>
         <main class="flex flex-grow">
             <div class="flex flex-col items-center mt-16 md:mt-28 md:items-start md:w-full lg:w-full mx-auto p-4">
-                <div class="flex items-center w-full justify-between text-center md:text-left">
-                    <div class="flex items-left">
-                        <button class="back-button text-left md:hidden" onclick="history.back()">
-                            <ion-icon name="arrow-back-outline"></ion-icon>
-                        </button>
-                    </div>
+                <div class="flex items-center w-full justify-between text-center ">
+                    
                     <div class="flex-grow">
                         <p class="text-3xl font-bold m-3 mb-4 md:ml-16">View Items</p>
                     </div>

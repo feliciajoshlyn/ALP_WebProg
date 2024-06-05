@@ -139,7 +139,7 @@ $result = admingetUsers();
         </nav>
         <!-- cart -->
         <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
-            <div class="w-full text-center md:text-left">
+            <div class="w-full text-center">
                 <button class="back-button md:hidden" onclick="history.back()">
                     <ion-icon name="arrow-back-outline"></ion-icon>
                 </button>
