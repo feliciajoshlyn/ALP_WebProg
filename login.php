@@ -22,7 +22,11 @@ session_start();
 
 <style>
     body {
-        font-family: 'poppins';
+        font-family: 'Poppins', sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
     }
 
     #navbar {
@@ -42,11 +46,20 @@ session_start();
     #dropdown a {
         transition: background-color 0.2s;
     }
+
+    .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 
-<body class="bg-yellow-50 sm:background-size:contain">
+<body class="bg-yellow-50">
     <?php if (isset($_GET['signedIn'])) { ?>
-        <h2 class="fixed z-999">sign in to access this feature</h2><?php } ?>
+        <h2 class="fixed z-999">sign in to access this feature</h2>
+    <?php } ?>
     <?php if (isset($_SESSION['user'])) {
         header("Location: index.php");
     }
@@ -56,47 +69,39 @@ session_start();
         <?php
     }
     ?>
-    <div>
-        <nav id="navbar"
-            class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
-            <div class="flex justify-between items-center">
-                <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
-                <span class="text-xl cursor-pointer font-semibold">
-                    TitipinAja.com
-                </span>
-                <span class="text-3xl cursor-pointer sm:hidden block mx-2">
-                    <ion-icon name="menu" onclick="menu(this)"></ion-icon>
-                </span>
-            </div>
+    <nav id="navbar" class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
+        <div class="flex justify-between items-center">
+            <ion-icon name="happy-outline" class="small-icon mr-2"></ion-icon>
+            <span class="text-xl cursor-pointer font-semibold">
+                TitipinAja.com
+            </span>
+            <span class="text-3xl cursor-pointer sm:hidden block mx-2">
+                <ion-icon name="menu" onclick="menu(this)"></ion-icon>
+            </span>
+        </div>
 
-            <ul id="slide"
-                class="bg-red-800 sm:flex sm:items-center z-50 sm:z-auto sm:static absolute w-full left-0 sm:w-auto sm:py-0 py-4 sm:pl-0 pl-7 sm:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
-                <li class="mx-4 my-6 md:my-0"><a href="index.php"
-                        class="font-medium hover:text-orange-200 duration-500 ">Home</a></li>
-                <li class="mx-4 my-6 md:my-0"><a href="viewItems.php"
-                        class="font-medium hover:text-orange-200  duration-500">Products</a></li>
-                <li class="mx-4 my-6 md:my-0 md:hidden"><a href="login.php"
-                        class="font-medium hover:text-orange-200  duration-500">Login</a></li>
-                <li class="mx-4 my-6 md:my-0 md:hidden"><a href="register.php"
-                        class="font-medium hover:text-orange-200  duration-500">Register</a></li>
-                <li class="mx-4 my-6 md:my-0 relative">
-                    <img src="path/to/profile-pic.jpg" alt="Profile"
-                        class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
-                    <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
-                        <a href="login.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
-                        <a href="register.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Register</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+        <ul id="slide" class="bg-red-800 sm:flex sm:items-center z-50 sm:z-auto sm:static absolute w-full left-0 sm:w-auto sm:py-0 py-4 sm:pl-0 pl-7 sm:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500">
+            <li class="mx-4 my-6 md:my-0"><a href="index.php" class="font-medium hover:text-orange-200 duration-500 ">Home</a></li>
+            <li class="mx-4 my-6 md:my-0"><a href="viewItems.php" class="font-medium hover:text-orange-200  duration-500">Products</a></li>
+            <li class="mx-4 my-6 md:my-0 md:hidden"><a href="login.php" class="font-medium hover:text-orange-200  duration-500">Login</a></li>
+            <li class="mx-4 my-6 md:my-0 md:hidden"><a href="register.php" class="font-medium hover:text-orange-200  duration-500">Register</a></li>
+            <li class="mx-4 my-6 md:my-0 relative">
+                <img src="path/to/profile-pic.jpg" alt="Profile" class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
+                <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
+                    <a href="login.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Login</a>
+                    <a href="register.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Register</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
 
-        <div
-            class="bg-[#FBEBA1] p-6 mt-32 rounded-lg shadow-md w-[90%] md:w-[40%] lg:w-[30%] mx-auto text-center flex flex-col mb-16">
+    <div class="content">
+        <div class="bg-[#FBEBA1] p-6 mt-32 rounded-lg shadow-md w-[90%] md:w-[40%] lg:w-[30%] mx-auto text-center flex flex-col mb-16">
             <h1 class="">Welcome!</h1>
             <h4 class="">Login into your account to continue</h4>
             <?php
             if (isset($_GET['userNotFound']) == 1) {
-                ?>
+            ?>
                 <p class="text-red-500 font-bold">User Not Found!!</p>
 
                 <?php
@@ -119,31 +124,27 @@ session_start();
                 </form>
             </div>
         </div>
-        <footer
-            class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center r">
-            <div class="w-full md:w-1/2 flex flex-col justify-center items-center mb-4 md:mb-0">
-                <h3 class="font-bold text-lg mb-2">Navigation</h3>
-                <div class="font-normal space-y-1 text-center text-center md:text-left">
-                    <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
-                    <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2 flex flex-col items-center md:items-start mb-4 md:mb-0">
-                <h3 class="font-bold text-lg mb-2">Contact</h3>
-                <div class="font-normal space-y-1 text-center md:text-left">
-                    <div>
-                        <p class="text-sm">Address: Ciputra Univeristy, Surabaya</p>
-                        <p class="text-sm">Phone: 081-34869995</p>
-                        <p class="text-sm">Email: info@titipinaja.com</p>
-                    </div>
-                </div>
-            </div>
-            <div class="w-full flex justify-center">
-                <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
-            </div>
-        </footer>
     </div>
 
+    <footer class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center mt-auto">
+        <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
+            <h3 class="font-bold text-lg mb-2">Navigation</h3>
+            <div class="font-normal space-y-1 text-center sm:text-left">
+                <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
+                <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 flex flex-col items-center mb-4 md:mb-0">
+            <h3 class="font-bold text-lg mb-2">Contact</h3>
+            <div class="font-normal space-y-1 text-center sm:text-left">
+                <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
+                <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+            </div>
+        </div>
+        <div class="w-full flex justify-center">
+            <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
+        </div>
+    </footer>
 
     <script>
         function menu(e) {
@@ -157,18 +158,15 @@ session_start();
             dropdown.classList.toggle('hidden');
         }
 
-        //tutup dropdown
-        document.addEventListener('click', function (event) {
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
             let dropdown = document.getElementById('dropdown');
             let profilePic = dropdown.previousElementSibling;
             if (!dropdown.contains(event.target) && !profilePic.contains(event.target)) {
                 dropdown.classList.add('hidden');
             }
         });
-
     </script>
 </body>
-
-
 
 </html>

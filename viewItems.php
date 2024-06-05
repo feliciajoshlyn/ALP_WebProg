@@ -22,6 +22,9 @@ include ('controller.php');
     <style>
         body {
             font-family: 'poppins';
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         #navbar {
@@ -154,6 +157,7 @@ include ('controller.php');
                 </li>
             </ul>
         </nav>
+        <main class="flex flex-grow">
         <div class="flex flex-col items-center mt-16 md:mt-28 md:items-start md:w-full lg:w-full mx-auto p-4">
             <div class="flex items-center w-full justify-between text-center md:text-left">
                 <div class="flex items-left">
@@ -178,46 +182,34 @@ include ('controller.php');
             $result = mysqli_query($conn, $sql);
 
             //if admin
-            
             if (isset($_SESSION['user'])) {
                 if ($_SESSION['user']['admin'] == 1) {
-                    ?>
-                    <div class="text-right mb-4">
-                        <a href="adminUpload.php" class="bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg">+ Add
-                            Item</a>
+            ?>
+                    <div class="w-[90%] lg:w-[80%] mx-auto mb-2 flex justify-end">
+                        <button onclick="location.href='adminUpload.php'" class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mr-2">Add Item</button>
                     </div>
-                    <?php
+            <?php
                 }
             }
             ?>
             <!-- div for product -->
-            <div class="w-[90%] lg:w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="w-[90%] lg:w-[80%] mx-auto grow p-2 md:p-4 md:flex  md:space-x-10">
                 <?php
 
                 while ($data = $result->fetch_assoc()) {
-                    ?>
+                ?>
                     <div class="bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg mb-2">
-                        <div class="grid m-5">
-                            <p class="text-center font-bold mb-1 w-full overflow-hidden text-ellipsis whitespace-nowrap">
-                                <?= $data['name'] ?>
-                            </p>
-
-                            <div style=" height:200px" class=" flex justify-center">
-                                <img src="<?= $data['photo'] ?>" style="width:200px" class="mx-auto">
-                            </div>
-
-                            <div class="mt-5 ml-10 sm:ml-15 md:ml-5 lg:ml-2">
-                                <p>Description: <?= $data['description'] ?></p>
-                                <p>Price: <?= $data['price'] ?></p>
-                                <p>Category: <?= $data['category'] ?></p>
-                                <p>Country: <?= $data['country'] ?></p>
-                                <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>"
-                                    class="text-xs text-blue-300 hover:underline ">View Details</a>
-                            </div>
-
-                        </div>
+                        <div class="grid ">
+                        <p class="text-center font-bold mb-1 w-full overflow-hidden text-ellipsis whitespace-nowrap"><?= $data['name'] ?></p>
+                        <!-- <p>Description: <?= $data['description'] ?></p><br> -->
+                        <img src="<?= $data['photo'] ?>" style="width:200px" class="mx-auto">
+                        <!-- <p>Price: <?= $data['price'] ?></p> -->
+                        <!-- <p>Category: <?= $data['category'] ?></p> -->
+                        <p class="text-sm">Country: <?= $data['country'] ?></p>
+                        <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>" class="text-xs text-blue-300 hover:underline ">View Details</a>
                     </div>
-                    <?php
+                </div>
+                <?php
                 }
                 my_closeDB($conn);
                 ?>
