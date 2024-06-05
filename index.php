@@ -103,9 +103,6 @@
                 </ul>
             </nav>
         </div>
-        <div class="flex flex-col items-center mt-16 md:mt-20 md:items-start md:w-full lg:w-full mx-auto p-4">
-
-            <h1>hi <?= $_SESSION['user']['username'] ?></h1>
             <?php
                 } else {
                     ?>
@@ -124,92 +121,94 @@
             </ul>
             </nav>
         </div>
-        <div class="flex flex-col items-center mt-20 md:mt-20 md:w-full lg:w-full mx-auto p-4">
-            <div class="text-indigo-800 opacity-80">
-                <h1 class="font-bold text-center mt-20 text-xl sm:text-2xl  md:text-3xl lg:text-4xl">Your Global Shopping
-                    Assistant - TitipinAja.com</h1>
-                <h2 class="text-md text-center mt-5 sm:text-xl ">Your Trusted Partner for International Online Shopping</h2>
-
-            </div>
-
-            <div class="w-[80%] flex flex-col items-center">
-                <img src="https://raw.githubusercontent.com/feliciajoshlyn/ALP_WebProg/main/img/pngegg-removebg.png"
-                    alt="Home Image">
-            </div>
-
-            <div
-                class="mt-20 rounded shadow-lg w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
-
-                <ul
-                    class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">USA</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">UK</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">China</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Japan</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Germany</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Singapore</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Taiwan</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Thailand</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Malaysia</li>
-                </ul>
-
-                <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
-                    aria-hidden="true">
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">USA</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">UK</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">China</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Japan</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Germany</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Singapore</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Taiwan</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Thailand</li>
-                    <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Malaysia</li>
-                </ul>
-
-            </div>
-
-            <div>
-                <h1 class="text-[#4C62B7] font-bold text-center mt-20 text-xl sm:text-2xl  md:text-3xl lg:text-4xl">
-                    FAQ
-                </h1>
-                <h2 class="text-[#4C62B7] text-md text-center mt-2 sm:text-xl ">Frequently Asked Questions</h2>
-                <div class="container mx-auto px-4 py-16">
-                    <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
-                        <h2 class="text-2xl font-semibold text-[#4C62B7]">Who is TitipinAja.com?</h2>
-                        <p class="mt-2 text-gray-600">TitipinAja.com is a trusted shopping assistant service that helps you
-                            purchase items from international online stores. We make it easy for you to get products from
-                            around the world, even if the store doesn't ship to your location.</p>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
-                        <h2 class="text-2xl font-semibold text-[#4C62B7]">What are the benefits of using TitipinAja.com?
-                        </h2>
-                        <p class="mt-2 text-gray-600">By using TitipinAja.com, you get access to a wider range of products
-                            from international stores, competitive shipping rates, and a seamless purchasing process. We
-                            handle everything from buying the item to shipping it to your doorstep.</p>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
-                        <h2 class="text-2xl font-semibold text-[#4C62B7]">Where can I buy items using TitipinAja.com?</h2>
-                        <p class="mt-2 text-gray-600">You can buy items from a variety of international online stores
-                            including the USA, UK, China, Japan, Germany, and many more. If the store doesn't ship to your
-                            country, we can help get the item to you.</p>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
-                        <h2 class="text-2xl font-semibold text-[#4C62B7]">What if my item doesn't arrive?</h2>
-                        <p class="mt-2 text-gray-600">If your item doesn't arrive, please contact our customer support team.
-                            We will track the shipment and provide assistance. In cases of lost or damaged items, we have a
-                            resolution process to ensure you're satisfied with our service.</p>
-                    </div>
-                </div>
-
-            </div>
-
+        
             <?php
+
                 }
                 ?>
-    </div>
+
+    <div class="flex flex-col items-center mt-20 md:mt-20 md:w-full lg:w-full mx-auto p-4">
+        <div class="text-indigo-800 opacity-80">
+            <h1 class="font-bold text-center mt-20 text-xl sm:text-2xl  md:text-3xl lg:text-4xl">Your Global Shopping
+                Assistant - TitipinAja.com</h1>
+            <h2 class="text-md text-center mt-5 sm:text-xl ">Your Trusted Partner for International Online Shopping</h2>
+
+        </div>
+
+        <div class="w-[80%] flex flex-col items-center">
+            <img src="https://raw.githubusercontent.com/feliciajoshlyn/ALP_WebProg/main/img/pngegg-removebg.png"
+                alt="Home Image">
+        </div>
+
+        <div
+            class="mt-20 rounded shadow-lg w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+
+            <ul
+                class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">USA</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">UK</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">China</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Japan</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Germany</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Singapore</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Taiwan</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Thailand</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Malaysia</li>
+            </ul>
+
+            <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
+                aria-hidden="true">
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">USA</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">UK</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">China</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Japan</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Germany</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Singapore</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Taiwan</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Thailand</li>
+                <li class="px-4 py-2 bg-[#4C62B7] text-white rounded">Malaysia</li>
+            </ul>
+
+        </div>
+
+        <div>
+            <h1 class="text-[#4C62B7] font-bold text-center mt-20 text-xl sm:text-2xl  md:text-3xl lg:text-4xl">
+                FAQ
+            </h1>
+            <h2 class="text-[#4C62B7] text-md text-center mt-2 sm:text-xl ">Frequently Asked Questions</h2>
+            <div class="container mx-auto px-4 py-16">
+                <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+                    <h2 class="text-2xl font-semibold text-[#4C62B7]">Who is TitipinAja.com?</h2>
+                    <p class="mt-2 text-gray-600">TitipinAja.com is a trusted shopping assistant service that helps you
+                        purchase items from international online stores. We make it easy for you to get products from
+                        around the world, even if the store doesn't ship to your location.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+                    <h2 class="text-2xl font-semibold text-[#4C62B7]">What are the benefits of using TitipinAja.com?
+                    </h2>
+                    <p class="mt-2 text-gray-600">By using TitipinAja.com, you get access to a wider range of products
+                        from international stores, competitive shipping rates, and a seamless purchasing process. We
+                        handle everything from buying the item to shipping it to your doorstep.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+                    <h2 class="text-2xl font-semibold text-[#4C62B7]">Where can I buy items using TitipinAja.com?</h2>
+                    <p class="mt-2 text-gray-600">You can buy items from a variety of international online stores
+                        including the USA, UK, China, Japan, Germany, and many more. If the store doesn't ship to your
+                        country, we can help get the item to you.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg mb-6">
+                    <h2 class="text-2xl font-semibold text-[#4C62B7]">What if my item doesn't arrive?</h2>
+                    <p class="mt-2 text-gray-600">If your item doesn't arrive, please contact our customer support team.
+                        We will track the shipment and provide assistance. In cases of lost or damaged items, we have a
+                        resolution process to ensure you're satisfied with our service.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <footer
         class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center r">
         <div class="w-full md:w-1/2 flex flex-col justify-center items-center mb-4 md:mb-0">
@@ -233,25 +232,9 @@
             <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
         </div>
     </footer>
-    </div>
+
 </body>
 <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                animation: {
-                    'infinite-scroll': 'infinite-scroll 25s linear infinite',
-                },
-                keyframes: {
-                    'infinite-scroll': {
-                        from: { transform: 'translateX(0)' },
-                        to: { transform: 'translateX(-100%)' },
-                    }
-                }
-            },
-        },
-    }
-
     function menu(e) {
         let list = document.querySelector('ul');
 

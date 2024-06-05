@@ -129,7 +129,7 @@ include ('controller.php');
                             class="font-medium hover:text-orange-200  duration-500">Logout</a></li>
                     <li class="mx-4 my-6 sm:my-0 relative">
                         <img src="path/to/profile-pic.jpg" alt="Profile"
-                            class="w-10 h-10 hidden md:block rounded-full cursor-pointer" onclick="toggleDropdown()">
+                            class="w-10 h-10 hidden sm:block rounded-full cursor-pointer" onclick="toggleDropdown()">
                         <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden">
                             <?php
                             if ($_SESSION['user']['admin'] == 0) {
