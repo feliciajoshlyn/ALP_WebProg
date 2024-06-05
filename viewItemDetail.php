@@ -174,7 +174,7 @@ include('controller.php')
             $result = getItemDetails($product_id);
             $data = $result->fetch_assoc();
             ?>
-            <div class="w-[70%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-5 md:p-4 shadow-lg">
+            <div class="w-[70%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-5 pb-0 md:p-4 shadow-lg">
                 <div class="md:flex grow md:m-5 md:mb-2 w-full">
                     <div class="md:w-1/4">
                         <img src="<?= $data['photo'] ?>" class="w-[100%] max-w-full h-auto rounded-lg shadow-md">
@@ -229,7 +229,7 @@ include('controller.php')
                                 <?php
                         } else if ($_SESSION['user']['admin'] == 1) {
                             ?>
-                                        <div class="text-right mr-5">
+                                        <div class="text-right mr-5 mt-10 md:mt-20">
                                             <a href="updateItem.php?update_id=<?= $data['product_id'] ?>" class="text-blue-400">Edit
                                                 Item</a> | <a href="deleteItem.php?delete_id=<?= $data['product_id'] ?>"
                                                 class="text-red-400">Delete</a>
