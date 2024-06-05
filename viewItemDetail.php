@@ -113,7 +113,7 @@ include ('controller.php');
                 <?php if (isset($_SESSION['user'])) {
                     if ($_SESSION['user']['admin'] == 0) {
                         ?>
-                        <li class="mx-4 my-6 md:my-0 md:hidden"><a href="cart.php"
+                        <li class="mx-4 my-6 sm:my-0 sm:hidden"><a href="cart.php"
                                 class="font-medium hover:text-orange-200  duration-500">View Cart</a></li>
                         <?php
                     } else {
@@ -180,7 +180,7 @@ include ('controller.php');
             $result = getItemDetails($product_id);
             $data = $result->fetch_assoc();
             ?>
-            <div class="w-[90%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-2 md:p-4 shadow-lg">
+            <div class="w-[70%] lg:w-[80%] mx-auto grow bg-white bg-opacity-80 border rounded-lg p-5 md:p-4 shadow-lg">
                 <div class="md:flex grow md:m-5 md:mb-2 w-full">
                     <div>
                         <img src="<?= $data['photo'] ?>" class="w-full">
