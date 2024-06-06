@@ -99,7 +99,7 @@ if (!isset($_SESSION['user']['customer_id'])) {
         }
     </style>
 
-    <body class="bg-yellow-50 background-size:contain">
+    <body class="bg-yellow-50 background-size:contain  flex flex-col min-h-screen">
         <div>
             <nav id="navbar"
                 class="w-full p-4 text-sky-50 items-center sm:h-20 sm:flex sm:items-center sm:justify-between fixed top-0 left-0 z-50">
@@ -211,9 +211,11 @@ if (!isset($_SESSION['user']['customer_id'])) {
                                 <div class="ml-2 md:ml-4 md:text-right w-full p-1">
                                     <p class=" md:text-left mb-0"><?= $data['name'] ?> | x<?= $data['quantity'] ?></p>
                                     <p class="md:text-xs text-sm md:mb-1 hidden md:block md:text-left ">description:
-                                        <?= $data['description'] ?></p>
+                                        <?= $data['description'] ?>
+                                    </p>
                                     <p class="md:text-xs text-sm mb-3 md:mb-4 md:text-left ">Rp
-                                        <?= $data['price'] * $data['quantity'] ?></p>
+                                        <?= $data['price'] * $data['quantity'] ?>
+                                    </p>
                                     <!-- just edit and delete button -->
                                     <a class="text-xs text-blue-300 hover:underline"
                                         href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>">Details</a><br
@@ -248,7 +250,7 @@ if (!isset($_SESSION['user']['customer_id'])) {
             </div>
         </div>
         <footer
-            class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center r">
+            class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center mt-20 md:mt-56">
             <div class="w-full md:w-1/2 flex flex-col justify-center items-center mb-4 md:mb-0">
                 <h3 class="font-bold text-lg mb-2">Navigation</h3>
                 <div class="font-normal space-y-1 text-center text-center md:text-left">

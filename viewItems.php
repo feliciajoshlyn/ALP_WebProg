@@ -157,94 +157,108 @@ include ('controller.php');
                 </li>
             </ul>
         </nav>
-        <main class="flex flex-grow">
-            <div class="flex flex-col items-center mt-16 md:mt-28 md:items-start md:w-full lg:w-full mx-auto p-4">
-                <div class="flex items-center w-full justify-between text-center ">
-                    
-                    <div class="flex-grow">
-                        <p class="text-3xl font-bold m-3 mb-4 md:ml-16">View Items</p>
-                    </div>
+        <div class="flex flex-col items-center mt-16 md:mt-28 md:items-start md:w-full mx-auto p-4">
+            <div class="flex items-center w-full justify-between text-center ">
+
+                <div class="flex-grow">
+                    <p class="text-3xl font-bold m-3 mb-4 md:ml-16">View Items</p>
                 </div>
-
-                <?php
-                $conn = my_connectDB();
-
-                $sql = "";
-                if (isset($_GET['country'])) {
-                    $sql = "SELECT * FROM products WHERE country =" . $_GET['country'];
-                } else {
-                    $sql = "SELECT * FROM products";
-                }
-                $result = mysqli_query($conn, $sql);
-
-                //if admin
-                if (isset($_SESSION['user'])) {
-                    if ($_SESSION['user']['admin'] == 1) {
-                        ?>
-                        <div class="w-[90%] lg:w-[80%] mx-auto mb-2 flex justify-end">
-                            <button onclick="location.href='adminUpload.php'"
-                                class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mx-2 w-full md:w-36">Add
-                                Item</button>
-                        </div>
-                        <?php
-                    }
-                }
-                ?>
-                <!-- div for product -->
-                <div
-                    class="w-[90%] lg:w-[80%] mx-auto grow p-2 md:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <?php
-                    while ($data = $result->fetch_assoc()) {
-                        ?>
-                        <div class="bg-white bg-opacity-80 border rounded-lg p-4 shadow-lg flex flex-col justify-between">
-                            <div class="text-center">
-                                <p class="font-bold mb-1 w-full overflow-hidden text-ellipsis whitespace-nowrap">
-                                    <?= $data['name'] ?></p>
-                            </div>
-                            <div class="flex justify-center items-center" style="height: 200px;">
-                                <img src="<?= $data['photo'] ?>" class="object-contain max-h-full max-w-full ">
-                            </div>
-                            <div class="text-center mt-4">
-                                <p class="text-sm font-bold">Rp <?= $data['price']?></p>
-                                <p class="text-sm">Country: <?= $data['country'] ?></p>
-                                <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>"
-                                    class="text-xs text-blue-300 hover:underline">View Details</a>
-                            </div>
-                        </div>
-                        <?php
-                    }
-                    my_closeDB($conn);
-                    ?>
-                </div>
-
             </div>
-            
 
-    </div>
+            <?php
+            $conn = my_connectDB();
 
-    <footer
-                class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center r">
-                <div class="w-full md:w-1/2 flex flex-col justify-center items-center mb-4 md:mb-0">
-                    <h3 class="font-bold text-lg mb-2">Navigation</h3>
-                    <div class="font-normal space-y-1 text-center text-center md:text-left">
-                        <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
-                        <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
+            $sql = "";
+            if (isset($_GET['country'])) {
+                $sql = "SELECT * FROM products WHERE country = '" . $_GET['country'] . "'";
+            } else {
+                $sql = "SELECT * FROM products";
+            }
+            $result = mysqli_query($conn, $sql);
+
+            //if admin
+            if (isset($_SESSION['user'])) {
+                if ($_SESSION['user']['admin'] == 1) {
+                    ?>
+                    <div class="w-[90%] lg:w-[80%] mx-auto mb-2 flex justify-end">
+                        <button onclick="location.href='adminUpload.php'"
+                            class="p-2 border border-green-500 bg-green-500 text-yellow-50 rounded-lg text-green-300 hover:bg-white hover:text-green-300 mx-2 w-full md:w-36">Add
+                            Item</button>
                     </div>
-                </div>
-                <div class="w-full md:w-1/2 flex flex-col items-center md:items-start mb-4 md:mb-0">
-                    <h3 class="font-bold text-lg mb-2">Contact</h3>
-                    <div class="font-normal space-y-1 text-center md:text-left">
-                        <div>
-                            <p class="text-sm">Address: Ciputra Univeristy, Surabaya</p>
-                            <p class="text-sm">Phone: 081-34869995</p>
-                            <p class="text-sm">Email: info@titipinaja.com</p>
+                    <?php
+                }
+            }
+            ?>
+            <div class="w-[90%] lg:w-[80%] mx-auto mb-2 flex overflow-x-auto">
+                <button onclick="location.href='viewItems.php'"
+                    class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mx-2 w-full md:w-36">View
+                    All</button>
+                <button onclick="location.href='viewItems.php?country=Japan'"
+                    class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mx-2 w-full md:w-36">Japan</button>
+                <button onclick="location.href='viewItems.php?country=Korea'"
+                    class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mx-2 w-full md:w-36">Korea</button>
+                <button onclick="location.href='viewItems.php?country=Malaysia'"
+                    class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mx-2 w-full md:w-36">Malaysia</button>
+                <button onclick="location.href='viewItems.php?country=Singapore'"
+                    class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mx-2 w-full md:w-36">Singapore</button>
+                <button onclick="location.href='viewItems.php?country=USA'"
+                    class="p-2 border border-blue-500 bg-blue-500 text-yellow-50 rounded-lg text-blue-300 hover:bg-white hover:text-blue-300 mx-2 w-full md:w-36">USA</button>
+            </div>
+
+            <!-- div for product -->
+            <div
+                class="w-[80%] lg:w-[80%] mx-auto grow p-2 md:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <?php
+                while ($data = $result->fetch_assoc()) {
+                    ?>
+                    <div class="bg-white bg-opacity-80 border rounded-lg p-4 shadow-lg flex flex-col justify-between">
+                        <div class="text-center">
+                            <p class="font-bold mb-1 w-full overflow-hidden text-ellipsis whitespace-nowrap">
+                                <?= $data['name'] ?>
+                            </p>
+                        </div>
+                        <div class="flex justify-center items-center" style="height: 200px;">
+                            <img src="<?= $data['photo'] ?>" class="object-contain max-h-full max-w-full ">
+                        </div>
+                        <div class="text-center mt-4">
+                            <p class="text-sm font-bold">Rp <?= $data['price'] ?></p>
+                            <p class="text-sm">Country: <?= $data['country'] ?></p>
+                            <a href="viewItemDetail.php?product_id=<?= $data['product_id'] ?>"
+                                class="text-xs text-blue-300 hover:underline">View Details</a>
                         </div>
                     </div>
+                    <?php
+                }
+                my_closeDB($conn);
+                ?>
+            </div>
+
+        </div>
+
+        <footer
+            class="pt-8 pb-8 bg-[#4C62B7] text-sky-50 font-thin flex flex-col md:flex-row justify-center items-center">
+            <div class="w-full md:w-1/2 flex flex-col justify-center items-center mb-4 md:mb-0">
+                <h3 class="font-bold text-lg mb-2">Navigation</h3>
+                <div class="font-normal space-y-1 text-center text-center md:text-left">
+                    <div><a href="index.php" class="font-normal text-sm hover:underline">Home</a></div>
+                    <div><a href="viewItems.php" class="font-normal text-sm hover:underline">Products</a></div>
                 </div>
-                <div class="w-full flex justify-center">
-                    <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col items-center md:items-start mb-4 md:mb-0">
+                <h3 class="font-bold text-lg mb-2">Contact</h3>
+                <div class="font-normal space-y-1 text-center md:text-left">
+                    <div>
+                        <p class="text-sm">Address: Ciputra Univeristy, Surabaya</p>
+                        <p class="text-sm">Phone: 081-34869995</p>
+                        <p class="text-sm">Email: info@titipinaja.com</p>
+                    </div>
                 </div>
-            </footer>
+            </div>
+            <div class="w-full flex justify-center">
+                <h6 class="font-normal text-xs mt-3 text-center">© 2024 TitipinAja.com. All Rights Reserved.</h6>
+            </div>
+        </footer>
+    </div>
 </body>
 <script>
     function menu(e) {
