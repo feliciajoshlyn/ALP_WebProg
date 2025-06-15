@@ -147,6 +147,7 @@ session_start();
     </footer>
 
     <script>
+        //
         function menu(e) {
             let list = document.querySelector('ul');
 
